@@ -1,0 +1,25 @@
+Initialise board
+** first try output was 27 dots in a line
+** second try output was 9 dots in a line
+** third and final try was 9 dots spaced as per tictactoe
+** not 5SP
+
+User Input
+** as expected
+
+Set input values to array values (-1 for all) 
+** started with tests
+** many reds!
+** tried string.substring
+	var changeInputFirstSubstring = value.Substring(0,0); // = "1"
+        var changeInputSecondSubstring = value.Substring(2,2); // = "1"
+        int changeFirst = Convert.ToInt32(changeInputFirstSubstring); //
+        int changeSecond = Convert.ToInt32(changeInputSecondSubstring);
+        changeFirst = changeFirst - 1;
+        changeSecond = changeSecond - 1;
+        changeInputFirstSubstring = Convert.ToString(changeFirst);
+        changeInputSecondSubstring = Convert.ToString(changeSecond);
+        string arrayInput = String.Concat(changeInputFirstSubstring, ",", changeInputSecondSubstring);
+        return arrayInput;
+ ** test failed with input 1,1
+** use string.split
