@@ -7,8 +7,9 @@ namespace TicTacToe
         static void Main(string[] args)
         {
             var board = new GameBoard();
-            board.InitialiseBoard();
+            board.Print();
             board.GetPlayerInput();
+            board.Print();
         }
     }
 }

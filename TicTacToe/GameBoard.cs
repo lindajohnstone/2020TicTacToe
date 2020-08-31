@@ -4,15 +4,14 @@ namespace TicTacToe
 {
     public class GameBoard
     {
-        private string coords;
-        public void InitialiseBoard()
-        {
-            var board = new[] 
+        int[][] board = new[] 
                 {                
                 new[] { 0, 0, 0 },                
                 new[] { 0, 0, 0 },                
                 new[] { 0, 0, 0 },                            
             };
+        public void Print()
+        {
             Console.WriteLine("Here's the current board:");
             for (int i = 0; i < board.Length; i++)
             {
@@ -27,7 +26,9 @@ namespace TicTacToe
         public void GetPlayerInput()
         {
             Console.WriteLine("Player 1 enter a coord x,y to place your X or enter 'q' to give up: ");
-            coords = Console.ReadLine();
+            var coords = Console.ReadLine();
+            var position = new PlayerPosition(coords);
+
         }
     }
 }
