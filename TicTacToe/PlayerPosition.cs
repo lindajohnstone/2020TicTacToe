@@ -1,15 +1,17 @@
 using System;
 using System.Collections.Generic;
 
-namespace tests.TicTacToe
+namespace TicTacToe
 {
     public class PlayerPosition
     {
         public PlayerPosition(string value)
         {
-            string[] userInput = value.Split(",");
-            X = Convert.ToInt32(userInput[0]); 
-            Y = Convert.ToInt32(userInput[1]); 
+            var userInput = value.Split(",");
+            int.TryParse(userInput[0], out var x);
+            X = x; 
+            int.TryParse(userInput[1], out var y); 
+            Y = y;
         }
 
         public int X { get; internal set; }
