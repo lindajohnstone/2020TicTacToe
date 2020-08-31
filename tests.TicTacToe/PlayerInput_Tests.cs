@@ -6,16 +6,17 @@ namespace tests.TicTacToe
     public class PlayerInput_Tests
     {
         [Theory]
-        [InlineData("0,0","1,1")]// fails
-        [InlineData("0,0","0,0")] // passes
-        public void Should_Change_Player_Input_ToArray(string actual, string expected)
+        [InlineData("1,1",1,1)]
+        [InlineData("0,0",0,0)] 
+        public void Should_Change_Player_Input_ToArray(string actual, int expectedX, int expectedY)
         {
             // arrange
-            var value = new PlayerPosition();
+            
             // act
-            var input = value.SetPosition(actual);
+            var position = new PlayerPosition(actual);
             // assert
-            Assert.Equal(expected, actual);
+            Assert.Equal(expectedX, position.X);
+            Assert.Equal(expectedY, position.Y);
         }
     }
 }
