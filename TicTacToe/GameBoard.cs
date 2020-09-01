@@ -65,5 +65,16 @@ namespace TicTacToe
             var position = new PlayerPosition(coords);
             return position;
         }
+
+        public void PlayGame()
+        {
+            var board = new GameBoard();
+            for (int i = 0; i < 3; i++)
+            {
+                var position = board.GetPlayerInput();
+                board.Place(1, position.X, position.Y);
+                board.Print();
+            }
+        }
     }
 }
