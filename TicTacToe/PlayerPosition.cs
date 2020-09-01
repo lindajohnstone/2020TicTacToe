@@ -12,6 +12,8 @@ namespace TicTacToe
             X = x; 
             int.TryParse(userInput[1], out var y); 
             Y = y;
+            // logic : receive X & Y; SetArray = array.SetValue(1, 0, 0); print board
+            
         }
 
         public int X { get; internal set; }

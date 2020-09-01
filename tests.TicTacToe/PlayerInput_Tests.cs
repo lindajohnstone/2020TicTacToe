@@ -10,7 +10,7 @@ namespace tests.TicTacToe
         [InlineData("1,1",1,1)]
         [InlineData("0,0",0,0)]
         [InlineData("a,b",0,0)] 
-        public void Should_Change_Player_Input_ToArray(string actual, int expectedX, int expectedY)
+        public void Should_Receive_Input_Values_Test(string actual, int expectedX, int expectedY)
         {
             // arrange
             
@@ -19,6 +19,19 @@ namespace tests.TicTacToe
             // assert
             Assert.Equal(expectedX, position.X);
             Assert.Equal(expectedY, position.Y);
+        }
+        [Theory]
+        [InlineData(0,0,1)]
+        public void Should_Set_Input_Values(int actualX, int actualY, string expected)
+        {
+            // arrange
+            var X = Convert.ToString(actualX);
+            var Y = Convert.ToString(actualY);
+            var input = String.Concat(X, ",", Y);
+            var position = new PlayerPosition(input);
+            // act
+            // assert
+            Assert.Equal(expected, X, Y);
         }
     }
 }
