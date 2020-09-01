@@ -1,3 +1,4 @@
+31/8
 Initialise board
 ** first try output was 27 dots in a line
 ** second try output was 9 dots in a line
@@ -33,3 +34,30 @@ Set input values to array values (-1 for all)
         string arrayInput = String.Concat(firstValue, ",", secondValue); // "0,0"
         return arrayInput; // "0,0" - fails; passes if both expected and actual are "0,0"
 	** test failed as above
+** test and code working during mentor meeting
+===========
+1/9
+Set input values to array values (-1 for all)
+** loop inside Print method done - unable to test ** manually changed values in array
+	** did not work (if statement original version, line at bottom attempt to try different way - prints 
+		System.Int32[]System.Int32[]System.Int32[]
+		System.Int32[]System.Int32[]System.Int32[]
+		System.Int32[]System.Int32[]System.Int32[]
+	/* var coords = board.GetValue(i, j);
+                    if ((bool)(coords = 2))
+                    {
+                        Console.Write("Y");
+                    }
+                    else
+                    {
+                        if ((bool)(coords = 1))
+                        {
+                            Console.Write("X");
+                        }
+                        else
+                        {
+                            Console.Write(". ");
+                        }
+                    } */
+                    //Console.Write(board.GetValue(j));
+** tests not working.

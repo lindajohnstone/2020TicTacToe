@@ -17,7 +17,7 @@ namespace TicTacToe
             {
                 for (int j = 0; j < board.Length; j++)
                 {
-                    var coords = board.GetValue(i, j);
+                    /* var coords = board.GetValue(i, j);
                     if ((bool)(coords = 2))
                     {
                         Console.Write("Y");
@@ -32,7 +32,9 @@ namespace TicTacToe
                         {
                             Console.Write(". ");
                         }
-                    }
+                    } */
+                    //Console.Write(board.GetValue(j));
+                    Console.Write(".");
                 }
                 Console.WriteLine();
             }
