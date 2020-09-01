@@ -60,4 +60,5 @@ Set input values to array values (-1 for all)
                         }
                     } */
                     //Console.Write(board.GetValue(j));
-** tests not working.
+** test not working.
+** test and code working after mentor meeting

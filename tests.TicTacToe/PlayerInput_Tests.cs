@@ -21,17 +21,20 @@ namespace tests.TicTacToe
             Assert.Equal(expectedY, position.Y);
         }
         [Theory]
-        [InlineData(0,0,1)]
-        public void Should_Set_Input_Values(int actualX, int actualY, string expected)
+        [InlineData(0,0,true)]
+        [InlineData(0,1,true)]
+        [InlineData(2,0,true)]
+        [InlineData(1,0,true)]
+        public void Should_Occupy_Expected_Position_On_Board(int x, int y, bool expected)
         {
             // arrange
-            var X = Convert.ToString(actualX);
-            var Y = Convert.ToString(actualY);
-            var input = String.Concat(X, ",", Y);
-            var position = new PlayerPosition(input);
+            var board = new GameBoard();
             // act
+            var player = 1;
+            board.Place(player, x, y);
+            var isOccupied = board.IsOccupied(x, y);
             // assert
-            Assert.Equal(expected, X, Y);
+            Assert.Equal(expected, isOccupied);
         }
     }
 }

@@ -8,7 +8,8 @@ namespace TicTacToe
         {
             var board = new GameBoard();
             board.Print();
-            board.GetPlayerInput();
+            var position = board.GetPlayerInput();
+            board.Place(1, position.X, position.Y);
             board.Print();
         }
     }
