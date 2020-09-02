@@ -30,8 +30,6 @@ namespace TicTacToe
                     {
                         Console.Write(". ");
                     }
-                    //Console.Write(board.GetValue(j));
-                    //Console.Write(".");
                 }
                 Console.WriteLine();
             }
@@ -77,15 +75,30 @@ namespace TicTacToe
                 board.Print();
             }
         }
-        public bool IsThisAWin(bool firstPosition, bool secondPosition, bool thirdPosition) 
+        public bool IsThisAWin() 
         {
             /*
             loop through array to check which is occupied
             pattern = 0,0 0,1 0,2
             if all 1 or all 2, we have a win
-            pass to another method to print and end game - IsThisAWin() returns nothing so no longer a bool
+            pass to another method to print and end game
             */
-            return (firstPosition && secondPosition && thirdPosition);
+            string positionCheck = "";
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (IsOccupied(i, j))
+                    {
+                        positionCheck = String.Concat(positionCheck, board[i][j]);
+                    }
+                }
+            }
+            if (positionCheck == "111")
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

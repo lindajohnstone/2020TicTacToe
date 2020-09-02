@@ -28,9 +28,11 @@ namespace tests.TicTacToe
             // arrange
             var board = new GameBoard();
             var player = 1;
+
             // act
             board.Place(player, x, y);
             var isOccupied = board.IsOccupied(x, y);
+            
             // assert
             Assert.Equal(expected, isOccupied);
         }
@@ -39,7 +41,6 @@ namespace tests.TicTacToe
         public void Should_Be_A_Win()
         {
             // arrange
-            // need to pass 3 different positions to be tested
             var board = new GameBoard();
             var player = 1;
             var pos1 = 0;
@@ -50,10 +51,10 @@ namespace tests.TicTacToe
             board.Place(player, pos1, pos1);
             board.Place(player, pos1,pos2);
             board.Place(player, pos1, pos3);
-            var firstPosition = board.IsOccupied(pos1, pos1);
-            var secondPosition = board.IsOccupied(pos1, pos2);
-            var thirdPosition = board.IsOccupied(pos1, pos3);
-            var win = board.IsThisAWin(firstPosition, secondPosition, thirdPosition);
+            board.IsOccupied(pos1, pos1);
+            board.IsOccupied(pos1, pos2);
+            board.IsOccupied(pos1, pos3);
+            var win = board.IsThisAWin();
 
             // assert
             Assert.True(win);
