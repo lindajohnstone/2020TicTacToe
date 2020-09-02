@@ -32,12 +32,12 @@ namespace tests.TicTacToe
             // act
             board.Place(player, x, y);
             var isOccupied = board.IsOccupied(x, y);
-            
+
             // assert
             Assert.Equal(expected, isOccupied);
         }
         
-        [Fact]
+        /* [Fact]
         public void Should_Be_A_Win()
         {
             // arrange
@@ -58,6 +58,30 @@ namespace tests.TicTacToe
 
             // assert
             Assert.True(win);
+        }  */
+
+        [Theory]
+        [InlineData("111", true)]
+        public void Should_Be_A_Win_Theory_Test(string value, bool expected)
+        {
+            // arrange
+            var board = new GameBoard();
+            var player = 1;
+            var pos1 = 0;
+            var pos2 = 1;
+            var pos3 = 2;
+            
+            // act
+            board.Place(player, pos1, pos1);
+            board.Place(player, pos1,pos2);
+            board.Place(player, pos1, pos3);
+            board.IsOccupied(pos1, pos1);
+            board.IsOccupied(pos1, pos2);
+            board.IsOccupied(pos1, pos3);
+            value = board.IsThisAWin();
+
+            // assert
+            Assert.Equal(expected, value);
         }
     }
 }

@@ -67,7 +67,7 @@ namespace TicTacToe
         public void PlayGame()
         {
             var board = new GameBoard();
-            board.Print();
+            
             for (int i = 0; i < 3; i++)
             {
                 var position = board.GetPlayerInput();
@@ -75,7 +75,7 @@ namespace TicTacToe
                 board.Print();
             }
         }
-        public bool IsThisAWin() 
+        public string IsThisAWin() 
         {
             /*
             loop through array to check which is occupied
@@ -83,22 +83,25 @@ namespace TicTacToe
             if all 1 or all 2, we have a win
             pass to another method to print and end game
             */
-            string positionCheck = "";
+            string winCheck = "";
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
                     if (IsOccupied(i, j))
                     {
-                        positionCheck = String.Concat(positionCheck, board[i][j]);
+                        winCheck = String.Concat(winCheck, board[i][j]);
                     }
                 }
             }
-            if (positionCheck == "111")
-            {
-                return true;
-            }
-            return false;
+            return winCheck;
         }
+        /* public string EndGame(string winCheck)
+        {
+            if (winCheck == "111" || winCheck == "222")
+            {
+                Console.WriteLine("Move accepted, well done you've won the game! ");
+            }
+        } */
     }
 }

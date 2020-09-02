@@ -69,3 +69,5 @@ Loop so we have 3 turns
 Is this a win
 ** one test written - code written that can't be reused. ** will only work with current positions
 ** how to theory test?
+UPDATE:
+** test and method for Is this a win updated. Need to refactor so that a string value can be used to show who won.
