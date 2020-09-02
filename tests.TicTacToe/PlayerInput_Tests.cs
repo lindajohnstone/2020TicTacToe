@@ -10,11 +10,9 @@ namespace tests.TicTacToe
         [InlineData("1,1",1,1)]
         [InlineData("0,0",0,0)]
         [InlineData("a,b",0,0)] 
-        public void Should_Receive_Input_Values_Test(string actual, int expectedX, int expectedY)
+        public void Should_Receive_Input_Values(string actual, int expectedX, int expectedY)
         {
             // arrange
-            
-            // act
             var position = new PlayerPosition(actual);
             // assert
             Assert.Equal(expectedX, position.X);
@@ -29,12 +27,36 @@ namespace tests.TicTacToe
         {
             // arrange
             var board = new GameBoard();
-            // act
             var player = 1;
+            // act
             board.Place(player, x, y);
             var isOccupied = board.IsOccupied(x, y);
             // assert
             Assert.Equal(expected, isOccupied);
+        }
+        
+        [Fact]
+        public void Should_Be_A_Win()
+        {
+            // arrange
+            // need to pass 3 different positions to be tested
+            var board = new GameBoard();
+            var player = 1;
+            var pos1 = 0;
+            var pos2 = 1;
+            var pos3 = 2;
+            
+            // act
+            board.Place(player, pos1, pos1);
+            board.Place(player, pos1,pos2);
+            board.Place(player, pos1, pos3);
+            var firstPosition = board.IsOccupied(pos1, pos1);
+            var secondPosition = board.IsOccupied(pos1, pos2);
+            var thirdPosition = board.IsOccupied(pos1, pos3);
+            var win = board.IsThisAWin(firstPosition, secondPosition, thirdPosition);
+
+            // assert
+            Assert.True(win);
         }
     }
 }

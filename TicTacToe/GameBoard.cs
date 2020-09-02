@@ -69,12 +69,23 @@ namespace TicTacToe
         public void PlayGame()
         {
             var board = new GameBoard();
+            board.Print();
             for (int i = 0; i < 3; i++)
             {
                 var position = board.GetPlayerInput();
                 board.Place(1, position.X, position.Y);
                 board.Print();
             }
+        }
+        public bool IsThisAWin(bool firstPosition, bool secondPosition, bool thirdPosition) 
+        {
+            /*
+            loop through array to check which is occupied
+            pattern = 0,0 0,1 0,2
+            if all 1 or all 2, we have a win
+            pass to another method to print and end game - IsThisAWin() returns nothing so no longer a bool
+            */
+            return (firstPosition && secondPosition && thirdPosition);
         }
     }
 }

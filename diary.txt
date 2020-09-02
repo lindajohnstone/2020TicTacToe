@@ -62,3 +62,10 @@ Set input values to array values (-1 for all)
                     //Console.Write(board.GetValue(j));
 ** test not working.
 ** test and code working after mentor meeting
+============
+3/9
+Loop so we have 3 turns
+** 1st version works - cannot be tested
+Is this a win
+** one test written - code written that can't be reused. ** will only work with current positions
+** how to theory test?
