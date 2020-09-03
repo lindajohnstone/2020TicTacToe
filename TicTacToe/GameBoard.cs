@@ -37,13 +37,12 @@ namespace TicTacToe
         }
         public void PlayGame()
         {
-            var board = new GameBoard();
             
             for (int i = 0; i < 3; i++)
             {
-                var position = board.GetPlayerInput();
-                board.Place(1, position.X, position.Y);
-                board.Print();
+                var position = GetPlayerInput();
+                Place(1, position.X, position.Y);
+                Print();
             }
         }
         public PlayerPosition GetPlayerInput()
@@ -74,26 +73,22 @@ namespace TicTacToe
         }
         public bool IsThisAWin() 
         {
-            /*
-            loop through array to check which is occupied
-            pattern = 0,0 0,1 0,2
-            if all 1 or all 2, we have a win
-            pass to another method to print and end game
-            */
-            /* string winCheck = "";
-            for (int i = 0; i < 3; i++)
+            // split responsibility // loop
+            if(board[0][0] != 0 && board[0][0] == board[0][1] && board[0][1] == board[0][2])
             {
-                for (int j = 0; j < 3; j++)
-                {
-                    if (IsOccupied(i, j))
-                    {
-                        winCheck = string.Concat(board[0].Select(_ => _.ToString()));
-                    }
-                }
+                return true;
             }
-            return winCheck; */
-            bool result = string.Concat(board[0].Select(_ => _.ToString())) == "111";
-            return result;
+            if(board[1][0] != 0 && board[1][0] == board[1][1] && board[1][1] == board[1][2])
+            {
+                return true;
+            }
+            if(board[0][0] != 0 && board[0][0] == board[1][0] && board[1][0] == board[2][0])
+            {
+                return true;
+            }
+            return false;
+            /* bool result = string.Concat(board[0].Select(_ => _.ToString())) == "111";
+            return result; */
             //return board[0][0] == 1 && board[0][1] == 1 && board[0][2] == 1;
         }
         private void EndGame()
