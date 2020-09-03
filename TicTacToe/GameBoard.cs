@@ -91,7 +91,7 @@ namespace TicTacToe
                 {
                     if (IsOccupied(i, j))
                     {
-                        winCheck = String.Concat(board[0].Select(_ => _.ToString()));
+                        winCheck = string.Concat(board[0].Select(_ => _.ToString()));
                     }
                 }
             }

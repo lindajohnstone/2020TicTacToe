@@ -82,11 +82,11 @@ namespace tests.TicTacToe
             board.IsOccupied(pos1, pos1);
             board.IsOccupied(pos1, pos2);
             board.IsOccupied(pos1, pos3);
-            var value = "pos1, pos2, pos3, pos4, pos5, pos6";
+            //var value = "pos1, pos2, pos3, pos4, pos5, pos6";
             expected = board.IsThisAWin();
 
             // assert
-            Assert.Equal(expected, value);
+            Assert.True(expected);
         }
     }
 }
