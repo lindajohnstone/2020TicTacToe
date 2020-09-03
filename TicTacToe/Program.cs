@@ -10,6 +10,7 @@ namespace TicTacToe
             board.Print();
             board.PlayGame();
             board.IsThisAWin();
+            board.EndGame();
         }
     }
 }

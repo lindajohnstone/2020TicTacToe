@@ -35,12 +35,24 @@ namespace TicTacToe
                 Console.WriteLine();
             }
         }
-
-        public bool IsOccupied(int x, int y)
+        public void PlayGame()
         {
-            return board[x][y] != 0;
+            var board = new GameBoard();
+            
+            for (int i = 0; i < 3; i++)
+            {
+                var position = board.GetPlayerInput();
+                board.Place(1, position.X, position.Y);
+                board.Print();
+            }
         }
-
+        public PlayerPosition GetPlayerInput()
+        {
+            Console.WriteLine("Player 1 enter a coord x,y to place your X or enter 'q' to give up: ");
+            var coords = Console.ReadLine();
+            var position = new PlayerPosition(coords);
+            return position;
+        }
         public void Place(int player, int x, int y)
         {
             /*
@@ -56,25 +68,9 @@ namespace TicTacToe
                 board[x][y] = 2;
             }
         }
-
-        public PlayerPosition GetPlayerInput()
+        public bool IsOccupied(int x, int y)
         {
-            Console.WriteLine("Player 1 enter a coord x,y to place your X or enter 'q' to give up: ");
-            var coords = Console.ReadLine();
-            var position = new PlayerPosition(coords);
-            return position;
-        }
-
-        public void PlayGame()
-        {
-            var board = new GameBoard();
-            
-            for (int i = 0; i < 3; i++)
-            {
-                var position = board.GetPlayerInput();
-                board.Place(1, position.X, position.Y);
-                board.Print();
-            }
+            return board[x][y] != 0;
         }
         public bool IsThisAWin() 
         {
@@ -96,9 +92,12 @@ namespace TicTacToe
                 }
             }
             return winCheck; */
-            return string.Concat(board[0].Select(_ => _.ToString())) == "111";
-            //return board[0][0] == 1 && board[0][1] == 1 && board[0][2] == 1;
+            //return string.Concat(board[0].Select(_ => _.ToString())) == "111";
+            return board[0][0] == 1 && board[0][1] == 1 && board[0][2] == 1;
         }
-        
+        public void EndGame()
+        {
+            Console.WriteLine("Move accepted, well done you've won the game! ");
+        }
     }
 }
