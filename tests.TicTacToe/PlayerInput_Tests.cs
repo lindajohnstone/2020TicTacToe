@@ -61,24 +61,29 @@ namespace tests.TicTacToe
         }  */
 
         [Theory]
-        [InlineData("111", true)]
-        public void Should_Be_A_Win_Theory_Test(string value, bool expected)
+        [InlineData(0,0,0,1,0,2, true)]
+        public void Should_Be_A_Win_Theory_Test(int pos1, int pos2, int pos3, int pos4, int pos5, int pos6, bool expected)
         {
             // arrange
             var board = new GameBoard();
             var player = 1;
-            var pos1 = 0;
-            var pos2 = 1;
-            var pos3 = 2;
+            pos1 = 0;
+            pos2 = 0;
+            pos3 = 0;
+            pos4 = 1;
+            pos5 = 0;
+            pos6 = 2;
+            
             
             // act
-            board.Place(player, pos1, pos1);
-            board.Place(player, pos1,pos2);
-            board.Place(player, pos1, pos3);
+            board.Place(player, pos1, pos2);
+            board.Place(player, pos3,pos4);
+            board.Place(player, pos5, pos6);
             board.IsOccupied(pos1, pos1);
             board.IsOccupied(pos1, pos2);
             board.IsOccupied(pos1, pos3);
-            value = board.IsThisAWin();
+            var value = "pos1, pos2, pos3, pos4, pos5, pos6";
+            expected = board.IsThisAWin();
 
             // assert
             Assert.Equal(expected, value);

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace TicTacToe
 {
@@ -75,7 +76,7 @@ namespace TicTacToe
                 board.Print();
             }
         }
-        public string IsThisAWin() 
+        public bool IsThisAWin() 
         {
             /*
             loop through array to check which is occupied
@@ -83,25 +84,21 @@ namespace TicTacToe
             if all 1 or all 2, we have a win
             pass to another method to print and end game
             */
-            string winCheck = "";
+            /* string winCheck = "";
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
                     if (IsOccupied(i, j))
                     {
-                        winCheck = String.Concat(winCheck, board[i][j]);
+                        winCheck = String.Concat(board[0].Select(_ => _.ToString()));
                     }
                 }
             }
-            return winCheck;
+            return winCheck; */
+            return string.Concat(board[0].Select(_ => _.ToString())) == "111";
+            //return board[0][0] == 1 && board[0][1] == 1 && board[0][2] == 1;
         }
-        /* public string EndGame(string winCheck)
-        {
-            if (winCheck == "111" || winCheck == "222")
-            {
-                Console.WriteLine("Move accepted, well done you've won the game! ");
-            }
-        } */
+        
     }
 }
