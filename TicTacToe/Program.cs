@@ -9,8 +9,6 @@ namespace TicTacToe
             var board = new GameBoard();
             board.Print();
             board.PlayGame();
-            board.IsThisAWin();
-            board.EndGame();
         }
     }
 }
