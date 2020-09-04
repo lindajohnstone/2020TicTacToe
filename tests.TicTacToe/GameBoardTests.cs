@@ -23,5 +23,16 @@ namespace tests.TicTacToe
             // assert
             Assert.Equal(expected, isOccupied);
         }
+        [Fact]
+        public void Should_Check_Win_Condition_Row()
+        {
+            // arrange
+            var board = new GameBoard();
+        
+            //act
+            bool result = board.RowPatternCheck(new [] {1,1,1});
+            //assert
+            Assert.Equal(true, result);
+        }
     }
 }
