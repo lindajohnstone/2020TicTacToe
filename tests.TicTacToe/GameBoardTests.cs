@@ -23,16 +23,20 @@ namespace tests.TicTacToe
             // assert
             Assert.Equal(expected, isOccupied);
         }
-        [Fact]
-        public void Should_Check_Win_Condition_Row()
+        [Theory]
+        [InlineData(1,1,1, true)]
+        [InlineData(1,2,2, false)]
+        [InlineData(0,0,0, false)]
+        public void Should_Check_Win_Condition_Row(int one, int two, int three, bool expected)
         {
             // arrange
             var board = new GameBoard();
         
             //act
-            bool result = board.RowPatternCheck(new [] {1,1,1});
+            bool result = board.RowPatternCheck(new [] {one, two, three});
+
             //assert
-            Assert.Equal(true, result);
+            Assert.Equal(expected, result);
         }
     }
 }

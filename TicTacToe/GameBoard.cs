@@ -6,7 +6,7 @@ namespace TicTacToe
     public class GameBoard
     {
         int[][] board = new[] 
-                {                
+            {                
                 new[] { 0, 0, 0 },                
                 new[] { 0, 0, 0 },                
                 new[] { 0, 0, 0 },                            
@@ -43,14 +43,16 @@ namespace TicTacToe
             // check each variable against the next
             // return true if true
             // else return false
-           // if (list.Distinct().Skip(1).Any())
+           // 
            // if (list.Any(o => o != list[0]))
             if (row == null || row.Length == 0 || row[0] == 0 )
             {
                 return false;
             }
-            bool result = false;
-            for(int i = 0; i < row.Length - 1; i++)
+            
+            return !row.Distinct().Skip(1).Any();
+             
+            /* for(int i = 0; i < row.Length - 1; i++)
             {
                 if(row[i] == row[i+1]) 
                 {
@@ -61,8 +63,7 @@ namespace TicTacToe
                     result = false;
                     break;
                 }   
-            }
-            return result;
+            } */
         }
 
         public void PlayGame()
