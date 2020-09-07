@@ -89,3 +89,21 @@ UPDATE:
                 }
             }
             return winCheck; */
+1st version
+if (row == null || row.Length == 0 || row[0] == 0 )
+            {
+                return false;
+            }
+            bool result = false;
+            for(int i = 0; i < row.Length - 1; i++)
+            {
+                if(row[i] == row[i+1]) 
+                {
+                    result = true;
+                }
+                else 
+                {
+                    result = false;
+                    break;
+                }   
+            }

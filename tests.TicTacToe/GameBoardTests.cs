@@ -5,7 +5,7 @@ namespace tests.TicTacToe
 {
     public class GameBoardTests
     {
-        [Theory]
+        /* [Theory]
         [InlineData(0,0,true)]
         [InlineData(0,1,true)]
         [InlineData(2,0,true)]
@@ -22,8 +22,8 @@ namespace tests.TicTacToe
 
             // assert
             Assert.Equal(expected, isOccupied);
-        }
-        [Theory]
+        } */
+        /* [Theory]
         [InlineData(1,1,1, true)]
         [InlineData(1,2,2, false)]
         [InlineData(0,0,0, false)]
@@ -47,7 +47,24 @@ namespace tests.TicTacToe
             board.Place(1,0,1);
             board.Place(1,0,2);
             // act
-            bool result = board.CheckIfWinningRow();
+            //bool result = board.CheckIfWinningRow();
+            // assert
+            Assert.True(result);
+        } */
+        [Fact]
+        public void Should_Check_GameBoard_ShowsAWin()
+        {
+            // arrange
+            IWinningBoard determinator = new Determinator();
+            var board = new GameBoard(determinator);
+
+            // act
+            board.Place(1,0,0);
+            board.Place(1,0,1);
+            board.Place(1,0,2);
+            board.Print();
+            var result = board.CheckIfWinningRowOnBoard();
+
             // assert
             Assert.True(result);
         }

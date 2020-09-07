@@ -11,6 +11,13 @@ namespace TicTacToe
                 new[] { 0, 0, 0 },                
                 new[] { 0, 0, 0 },                            
             };
+        IWinningBoard _winningBoard;
+
+        public GameBoard(IWinningBoard winningBoard)
+        {
+            _winningBoard = winningBoard;
+
+        }
         public void Print()
         {
             Console.WriteLine("Here's the current board:");
@@ -36,7 +43,12 @@ namespace TicTacToe
             }
         }
 
-        public bool RowPatternCheck(int[] row)
+        public bool CheckIfWinningRowOnBoard()
+        {
+            return _winningBoard.CheckIfWinningRowOnBoard(board);
+        }
+
+        /* public bool RowPatternCheck(int[] row)
         {
             // loop through array
             // if not zero
@@ -52,7 +64,7 @@ namespace TicTacToe
             // loop through rows
             return !row.Distinct().Skip(1).Any();
              
-            /* for(int i = 0; i < row.Length - 1; i++)
+            for(int i = 0; i < row.Length - 1; i++)
             {
                 if(row[i] == row[i+1]) 
                 {
@@ -63,7 +75,7 @@ namespace TicTacToe
                     result = false;
                     break;
                 }   
-            } */
+            } 
         }
         public bool CheckIfWinningRow()
         {
@@ -84,10 +96,10 @@ namespace TicTacToe
                     return !row.Distinct().Skip(1).Any();
                 }
                 return false;
-            // loop through rows
+            loop through rows
             
              
-            /* for(int i = 0; i < row.Length - 1; i++)
+            for(int i = 0; i < row.Length - 1; i++)
             {
                 if(row[i] == row[i+1]) 
                 {
@@ -98,8 +110,8 @@ namespace TicTacToe
                     result = false;
                     break;
                 }   
-            } */
-        }
+            } 
+        } */
 
         public void PlayGame()
         {
