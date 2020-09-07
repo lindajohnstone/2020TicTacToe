@@ -38,5 +38,18 @@ namespace tests.TicTacToe
             //assert
             Assert.Equal(expected, result);
         }
+        [Fact]
+        public void Should_CheckIfAWin()
+        {
+            // arrange
+            var board = new GameBoard();
+            board.Place(1,0,0);
+            board.Place(1,0,1);
+            board.Place(1,0,2);
+            // act
+            bool result = board.CheckIfWinningRow();
+            // assert
+            Assert.True(result);
+        }
     }
 }
