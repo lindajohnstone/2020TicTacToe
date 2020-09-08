@@ -24,36 +24,7 @@ namespace tests.TicTacToe
             // assert
             Assert.Equal(expected, isOccupied);
         } 
-        [Theory]
-        [InlineData(1,1,1, true)]
-        [InlineData(1,2,2, false)]
-        [InlineData(0,0,0, false)]
-        public void Should_Check_Win_Condition_Row(int one, int two, int three, bool expected)
-        {
-            // arrange
-            IWinningBoard[] determinators = new [] {new RowDeterminator()};
-            var board = new GameBoard(determinators);
-        
-            //act
-            bool result = board.RowPatternCheck(new [] {one, two, three});
-
-            //assert
-            Assert.Equal(expected, result);
-        }
-        [Fact]
-        public void Should_CheckIfAWin()
-        {
-            // arrange
-            IWinningBoard[] determinators = new [] {new RowDeterminator()};
-            var board = new GameBoard(determinators);
-            board.Place(1,0,0);
-            board.Place(1,0,1);
-            board.Place(1,0,2);
-            // act
-            bool result = board.CheckIfWinningRow();
-            // assert
-            Assert.True(result);
-        }  
+    
         [Fact]
         public void Should_Check_GameBoard_ShowsAWinningRow()
         {
@@ -71,6 +42,7 @@ namespace tests.TicTacToe
             // assert
             Assert.True(result);
         }
+
         [Fact]
         public void Should_Check_GameBoard_ShowsAWinningColumn()
         {
@@ -86,6 +58,7 @@ namespace tests.TicTacToe
             // assert
             Assert.True(result);
         }
+        
         [Fact]
         public void Should_Be_A_Win()
         {

@@ -48,39 +48,6 @@ namespace TicTacToe
             return _determinators.Any(_ => _.IsThisAWin(board));
         }
 
-        public bool RowPatternCheck(int[] row)
-        {
-        // loop through array
-        // if not zero
-        // check each variable against the next
-        // return true if true
-        // else return false
-            if (row == null || row.Length == 0 || row[0] == 0 )
-            {
-                return false;
-            }
-            // loop through rows
-            return !row.Distinct().Skip(1).Any();
-        }
-
-        public bool CheckIfWinningRow()
-        {
-        // loop through array
-        // if not zero
-        // check each variable against the next
-        // return true if true
-        // else return false
-            foreach (int[] row in board)
-            {
-                if (row == null || row.Length == 0 || row[0] == 0 )
-                {
-                    return false;
-                }
-                return !row.Distinct().Skip(1).Any();
-            }
-            return false;
-        }  
-
         public void PlayGame()
         {
             for (int i = 0; i < 3; i++)
@@ -90,7 +57,7 @@ namespace TicTacToe
                 Print();
             }
         }
-        
+
         public PlayerPosition GetPlayerInput()
         {
             Console.WriteLine("Player 1 enter a coord x,y to place your X or enter 'q' to give up: ");
@@ -98,12 +65,9 @@ namespace TicTacToe
             var position = new PlayerPosition(coords);
             return position;
         }
+
         public void Place(int player, int x, int y)
         {
-            /*
-            symbol for player 
-            allocate coords to board
-            */
             if (player == 1)
             {
                 board[x][y] = 1;
@@ -117,26 +81,7 @@ namespace TicTacToe
         {
             return board[x][y] != 0;
         }
-        /* public bool IsThisAWin() 
-        {
-            // split responsibility // loop
-            if(board[0][0] != 0 && board[0][0] == board[0][1] && board[0][1] == board[0][2])
-            {
-                return true;
-            }
-            if(board[1][0] != 0 && board[1][0] == board[1][1] && board[1][1] == board[1][2])
-            {
-                return true;
-            }
-            if(board[0][0] != 0 && board[0][0] == board[1][0] && board[1][0] == board[2][0])
-            {
-                return true;
-            }
-            return false;
-            bool result = string.Concat(board[0].Select(_ => _.ToString())) == "111";
-            return result;
-            //return board[0][0] == 1 && board[0][1] == 1 && board[0][2] == 1;
-        } */
+
         private void EndGame()
         {
             bool result = IsThisAWin();// does not know what this is??
