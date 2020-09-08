@@ -49,7 +49,7 @@ namespace TicTacToe
         }
 
 
-        /* public bool RowPatternCheck(int[] row)
+    public bool RowPatternCheck(int[] row)
 {
    // loop through array
    // if not zero
@@ -64,20 +64,8 @@ namespace TicTacToe
    }
    // loop through rows
    return !row.Distinct().Skip(1).Any();
-
-   for(int i = 0; i < row.Length - 1; i++)
-   {
-       if(row[i] == row[i+1]) 
-       {
-           result = true;
-       }
-       else 
-       {
-           result = false;
-           break;
-       }   
-   } 
 }
+
 public bool CheckIfWinningRow()
 {
    // loop through array
@@ -97,22 +85,8 @@ public bool CheckIfWinningRow()
            return !row.Distinct().Skip(1).Any();
        }
        return false;
-   loop through rows
 
-
-   for(int i = 0; i < row.Length - 1; i++)
-   {
-       if(row[i] == row[i+1]) 
-       {
-           result = true;
-       }
-       else 
-       {
-           result = false;
-           break;
-       }   
-   } 
-} */
+} 
 
         public void PlayGame()
         {
