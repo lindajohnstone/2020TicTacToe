@@ -15,11 +15,11 @@ namespace tests.TicTacToe
                 new[] { 0, 0, 0 },                
                 new[] { 0, 0, 0 },                            
             };
-            var determinator = new Determinator();
+            var determinator = new RowDeterminator();
             
             // act
         
-            var result = determinator.CheckIfWinningRowOnBoard(board);
+            var result = determinator.IsThisAWin(board);
             // assert
             Assert.True(result);
         }
@@ -33,10 +33,10 @@ namespace tests.TicTacToe
                 new[] { 1, 0, 0 },                
                 new[] { 1, 0, 0 },                            
             };
-            var determinator = new Determinator(); 
+            var determinator = new ColumnDeterminator(); 
 
             // act 
-            var result = determinator.CheckIfWinningColumnOnBoard(board);
+            var result = determinator.IsThisAWin(board);
 
             // assert
             Assert.True(result);

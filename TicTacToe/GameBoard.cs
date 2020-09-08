@@ -11,13 +11,13 @@ namespace TicTacToe
                 new[] { 0, 0, 0 },                
                 new[] { 0, 0, 0 },                            
             };
-        IWinningBoard _winningBoard;
+        private IWinningBoard[] _determinators;
 
-        public GameBoard(IWinningBoard winningBoard)
+        public GameBoard(IWinningBoard[] determinators)
         {
-            _winningBoard = winningBoard;
-
+            _determinators = determinators;
         }
+
         public void Print()
         {
             Console.WriteLine("Here's the current board:");
@@ -43,19 +43,11 @@ namespace TicTacToe
             }
         }
 
-        public bool CheckIfWinningRowOnBoard()
+        public bool IsThisAWin()
         {
-            return _winningBoard.CheckIfWinningRowOnBoard(board);
-        }
-        public bool CheckIfWinningColumnOnBoard()
-        {
-            return _winningBoard.CheckIfWinningColumnOnBoard(board);
+            return _determinators.Any(_ => _.IsThisAWin(board));
         }
 
-        public bool CheckSingleColumn()
-        {
-            return _winningBoard.CheckSingleColumn(board);
-        }
 
         /* public bool RowPatternCheck(int[] row)
 {
@@ -158,7 +150,7 @@ public bool CheckIfWinningRow()
         {
             return board[x][y] != 0;
         }
-        public bool IsThisAWin() 
+        /* public bool IsThisAWin() 
         {
             // split responsibility // loop
             if(board[0][0] != 0 && board[0][0] == board[0][1] && board[0][1] == board[0][2])
@@ -174,10 +166,10 @@ public bool CheckIfWinningRow()
                 return true;
             }
             return false;
-            /* bool result = string.Concat(board[0].Select(_ => _.ToString())) == "111";
-            return result; */
+            bool result = string.Concat(board[0].Select(_ => _.ToString())) == "111";
+            return result;
             //return board[0][0] == 1 && board[0][1] == 1 && board[0][2] == 1;
-        }
+        } */
         private void EndGame()
         {
             bool result = IsThisAWin();// does not know what this is??
