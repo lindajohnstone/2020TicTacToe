@@ -47,7 +47,10 @@ namespace TicTacToe
         {
             return _winningBoard.CheckIfWinningRowOnBoard(board);
         }
-
+        public bool CheckIfWinningColumnOnBoard()
+        {
+            return _winningBoard.CheckIfWinningColumnOnBoard(board);
+        }
         /* public bool RowPatternCheck(int[] row)
         {
             // loop through array

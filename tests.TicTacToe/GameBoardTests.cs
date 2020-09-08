@@ -52,7 +52,7 @@ namespace tests.TicTacToe
             Assert.True(result);
         } */
         [Fact]
-        public void Should_Check_GameBoard_ShowsAWin()
+        public void Should_Check_GameBoard_ShowsAWinningRow()
         {
             // arrange
             IWinningBoard determinator = new Determinator();
@@ -68,5 +68,22 @@ namespace tests.TicTacToe
             // assert
             Assert.True(result);
         }
+        [Fact]
+        public void Should_Check_GameBoard_ShowsAWinningColumn()
+        {
+            // arrange
+            IWinningBoard determinator = new Determinator();
+            var board = new GameBoard(determinator);
+
+            // act
+            board.Place(1,0,0);
+            board.Place(1,1,0);
+            board.Place(1,2,0);
+            var result = board.CheckIfWinningColumnOnBoard();
+            // assert
+            Assert.True(result);
+        }
+
+        
     }
 }
