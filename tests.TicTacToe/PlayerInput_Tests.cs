@@ -6,7 +6,7 @@ namespace tests.TicTacToe
 {
     public class PlayerInput_Tests
     {
-        /* [Theory]
+        [Theory]
         [InlineData("1,1",1,1)]
         [InlineData("0,0",0,0)]
         [InlineData("a,b",0,0)] 
@@ -17,9 +17,6 @@ namespace tests.TicTacToe
             // assert
             Assert.Equal(expectedX, position.X);
             Assert.Equal(expectedY, position.Y);
-        } */
- 
-        
-        
+        }
     }
 }

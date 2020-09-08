@@ -48,49 +48,41 @@ namespace TicTacToe
             return _determinators.Any(_ => _.IsThisAWin(board));
         }
 
+        public bool RowPatternCheck(int[] row)
+        {
+        // loop through array
+        // if not zero
+        // check each variable against the next
+        // return true if true
+        // else return false
+            if (row == null || row.Length == 0 || row[0] == 0 )
+            {
+                return false;
+            }
+            // loop through rows
+            return !row.Distinct().Skip(1).Any();
+        }
 
-    public bool RowPatternCheck(int[] row)
-{
-   // loop through array
-   // if not zero
-   // check each variable against the next
-   // return true if true
-   // else return false
-  // 
-  // if (list.Any(o => o != list[0]))
-   if (row == null || row.Length == 0 || row[0] == 0 )
-   {
-       return false;
-   }
-   // loop through rows
-   return !row.Distinct().Skip(1).Any();
-}
-
-public bool CheckIfWinningRow()
-{
-   // loop through array
-   // if not zero
-   // check each variable against the next
-   // return true if true
-   // else return false
-  // 
-  // if (list.Any(o => o != list[0]))
-
-       foreach (int[] row in board)
-       {
-           if (row == null || row.Length == 0 || row[0] == 0 )
-           {
-               return false;
-           }
-           return !row.Distinct().Skip(1).Any();
-       }
-       return false;
-
-}  
+        public bool CheckIfWinningRow()
+        {
+        // loop through array
+        // if not zero
+        // check each variable against the next
+        // return true if true
+        // else return false
+            foreach (int[] row in board)
+            {
+                if (row == null || row.Length == 0 || row[0] == 0 )
+                {
+                    return false;
+                }
+                return !row.Distinct().Skip(1).Any();
+            }
+            return false;
+        }  
 
         public void PlayGame()
         {
-            
             for (int i = 0; i < 3; i++)
             {
                 var position = GetPlayerInput();
@@ -98,6 +90,7 @@ public bool CheckIfWinningRow()
                 Print();
             }
         }
+        
         public PlayerPosition GetPlayerInput()
         {
             Console.WriteLine("Player 1 enter a coord x,y to place your X or enter 'q' to give up: ");
