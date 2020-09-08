@@ -47,7 +47,7 @@ namespace tests.TicTacToe
         public void Should_Check_GameBoard_ShowsAWinningColumn()
         {
             // arrange
-            IWinningBoard[] determinators = new [] {new RowDeterminator()};
+            IWinningBoard[] determinators = new [] {new ColumnDeterminator()};
             var board = new GameBoard(determinators);
 
             // act
