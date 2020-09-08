@@ -40,11 +40,12 @@ namespace tests.TicTacToe
             //assert
             Assert.Equal(expected, result);
         }
-        /* [Fact]
+        [Fact]
         public void Should_CheckIfAWin()
         {
             // arrange
-            var board = new GameBoard();
+            IWinningBoard[] determinators = new [] {new RowDeterminator()};
+            var board = new GameBoard(determinators);
             board.Place(1,0,0);
             board.Place(1,0,1);
             board.Place(1,0,2);
@@ -52,7 +53,7 @@ namespace tests.TicTacToe
             bool result = board.CheckIfWinningRow();
             // assert
             Assert.True(result);
-        }  */
+        }  
         [Fact]
         public void Should_Check_GameBoard_ShowsAWinningRow()
         {
