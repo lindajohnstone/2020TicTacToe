@@ -4,6 +4,23 @@ namespace TicTacToe
 {
     public class Determinator : IWinningBoard
     {
+        public bool CheckSingleColumn(int[][] board)
+        {
+            int player = 1;
+            int count = 0;
+            for (int i = 0; i < board.Length; i++)
+                {
+                    if (board[i][0] == 1)
+                    {
+                        count++;
+                    }
+                }
+                if (count == player * board.Length)
+                {
+                    return true;
+                }
+                return false;
+        }
         public bool CheckIfWinningColumnOnBoard(int[][] board)
         {
             // loop through row

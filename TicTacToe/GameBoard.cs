@@ -51,70 +51,76 @@ namespace TicTacToe
         {
             return _winningBoard.CheckIfWinningColumnOnBoard(board);
         }
-        /* public bool RowPatternCheck(int[] row)
-        {
-            // loop through array
-            // if not zero
-            // check each variable against the next
-            // return true if true
-            // else return false
-           // 
-           // if (list.Any(o => o != list[0]))
-            if (row == null || row.Length == 0 || row[0] == 0 )
-            {
-                return false;
-            }
-            // loop through rows
-            return !row.Distinct().Skip(1).Any();
-             
-            for(int i = 0; i < row.Length - 1; i++)
-            {
-                if(row[i] == row[i+1]) 
-                {
-                    result = true;
-                }
-                else 
-                {
-                    result = false;
-                    break;
-                }   
-            } 
-        }
-        public bool CheckIfWinningRow()
-        {
-            // loop through array
-            // if not zero
-            // check each variable against the next
-            // return true if true
-            // else return false
-           // 
-           // if (list.Any(o => o != list[0]))
 
-                foreach (int[] row in board)
-                {
-                    if (row == null || row.Length == 0 || row[0] == 0 )
-                    {
-                        return false;
-                    }
-                    return !row.Distinct().Skip(1).Any();
-                }
-                return false;
-            loop through rows
-            
-             
-            for(int i = 0; i < row.Length - 1; i++)
-            {
-                if(row[i] == row[i+1]) 
-                {
-                    result = true;
-                }
-                else 
-                {
-                    result = false;
-                    break;
-                }   
-            } 
-        } */
+        public bool CheckSingleColumn()
+        {
+            return _winningBoard.CheckSingleColumn(board);
+        }
+
+        /* public bool RowPatternCheck(int[] row)
+{
+   // loop through array
+   // if not zero
+   // check each variable against the next
+   // return true if true
+   // else return false
+  // 
+  // if (list.Any(o => o != list[0]))
+   if (row == null || row.Length == 0 || row[0] == 0 )
+   {
+       return false;
+   }
+   // loop through rows
+   return !row.Distinct().Skip(1).Any();
+
+   for(int i = 0; i < row.Length - 1; i++)
+   {
+       if(row[i] == row[i+1]) 
+       {
+           result = true;
+       }
+       else 
+       {
+           result = false;
+           break;
+       }   
+   } 
+}
+public bool CheckIfWinningRow()
+{
+   // loop through array
+   // if not zero
+   // check each variable against the next
+   // return true if true
+   // else return false
+  // 
+  // if (list.Any(o => o != list[0]))
+
+       foreach (int[] row in board)
+       {
+           if (row == null || row.Length == 0 || row[0] == 0 )
+           {
+               return false;
+           }
+           return !row.Distinct().Skip(1).Any();
+       }
+       return false;
+   loop through rows
+
+
+   for(int i = 0; i < row.Length - 1; i++)
+   {
+       if(row[i] == row[i+1]) 
+       {
+           result = true;
+       }
+       else 
+       {
+           result = false;
+           break;
+       }   
+   } 
+} */
 
         public void PlayGame()
         {

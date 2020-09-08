@@ -4,5 +4,6 @@ namespace TicTacToe
     {
         public bool CheckIfWinningRowOnBoard(int[][] board);
         public bool CheckIfWinningColumnOnBoard(int[][] board);
+        public bool CheckSingleColumn(int[][] board);
     }
 }

@@ -62,7 +62,7 @@ namespace tests.TicTacToe
             board.Place(1,0,0);
             board.Place(1,0,1);
             board.Place(1,0,2);
-            board.Print();
+            //board.Print();
             var result = board.CheckIfWinningRowOnBoard();
 
             // assert
@@ -83,7 +83,20 @@ namespace tests.TicTacToe
             // assert
             Assert.True(result);
         }
+        [Theory]
+        [InlineData(0,0,0, false)]
+        [InlineData(0,1,2, true)]
+        public void Should_Check_GameBoard_ShowsAColumnWin(int one, int two, int three, bool expected)
+        {
+            // arrange
+            IWinningBoard determinator = new Determinator();
+            var board = new GameBoard(determinator);
 
-        
+            // act
+            bool result = board.CheckSingleColumn();
+
+            // assert
+            Assert.Equal(expected, result);
+        }
     }
 }

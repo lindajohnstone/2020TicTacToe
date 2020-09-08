@@ -23,6 +23,25 @@ namespace tests.TicTacToe
             // assert
             Assert.True(result);
         }
+        [Fact]
+        public void ShouldTestWinningColumn()
+        {
+            // arrange
+            int[][] board = new[] 
+            {                
+                new[] { 1, 0, 0 },                
+                new[] { 1, 0, 0 },                
+                new[] { 1, 0, 0 },                            
+            };
+            var determinator = new Determinator(); 
+
+            // act 
+            var result = determinator.CheckIfWinningColumnOnBoard(board);
+
+            // assert
+            Assert.True(result);
+        }
+
     }
     
 }
