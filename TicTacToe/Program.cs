@@ -6,7 +6,12 @@ namespace TicTacToe
     {
         static void Main(string[] args)
         {
-            IWinningBoard[] determinators = new [] {new RowDeterminator()};
+            var determinators = new IWinningBoard[] 
+            {
+                new RowDeterminator(),
+                new ColumnDeterminator(),
+                new LeftRightDiagonalDeterminator(),
+            };
             var board = new GameBoard(determinators);
             board.Print();
             board.PlayGame();

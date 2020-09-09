@@ -18,7 +18,7 @@ namespace TicTacToe
             {
                 for (int j = 0; j < board.Length; j++)
                 {
-                    if (board[i][j] == 1)
+                    if (board[i][j] == 1)// TODO: only for 1 player; need to work for 2 players
                     {
                         count++;
                     }

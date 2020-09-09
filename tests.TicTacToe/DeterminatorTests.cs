@@ -18,11 +18,11 @@ namespace tests.TicTacToe
             var determinator = new RowDeterminator();
             
             // act
-        
             var result = determinator.IsThisAWin(board);
             // assert
             Assert.True(result);
         }
+
         [Fact]
         public void ShouldTestWinningColumn()
         {
@@ -41,7 +41,24 @@ namespace tests.TicTacToe
             // assert
             Assert.True(result);
         }
+        [Fact]
+        public void ShouldTestWinningLeftRightDiagonal()
+        {
+            // arrange
+            int[][] board = new[] 
+            {                
+                new[] { 1, 0, 0 },                
+                new[] { 0, 1, 0 },                
+                new[] { 0, 0, 1 },                            
+            };
+            var determinator = new LeftRightDiagonalDeterminator();
 
+            // act
+            var result = determinator.IsThisAWin(board);
+
+            // assert
+            Assert.True(result);
+        }
+        
     }
-    
 }
