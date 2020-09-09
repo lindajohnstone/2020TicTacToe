@@ -1,6 +1,6 @@
 namespace TicTacToe
 {
-    public class LeftRightDiagonalDeterminator : IWinningBoard
+    public class DiagonalDeterminator : IWinningBoard
     {
         public bool IsThisAWin(int[][] board)
         {

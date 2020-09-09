@@ -10,7 +10,7 @@ namespace TicTacToe
             {
                 new RowDeterminator(),
                 new ColumnDeterminator(),
-                new LeftRightDiagonalDeterminator(),
+                new DiagonalDeterminator(),
             };
             var board = new GameBoard(determinators);
             board.Print();
