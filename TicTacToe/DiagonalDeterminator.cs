@@ -4,7 +4,7 @@ namespace TicTacToe
     {
         public bool IsThisAWin(int[][] board)
         {
-            if (board[1][1] == 0)
+            if (board[1][1] == 0) // TODO: if board > 3 x 3, cannot be hardcoded
             {
                 return false;
             }

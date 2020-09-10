@@ -7,6 +7,7 @@ namespace tests.TicTacToe
 {
     public class DeterminatorTests
     {
+        // test winning row
         [Fact]
         public void ShouldTestWinningRow()
         {
@@ -25,6 +26,67 @@ namespace tests.TicTacToe
             Assert.True(result);
         }
 
+        [Theory]
+        [ClassData(typeof(RowDeterminatorData))]
+        public void ShouldTestWinningRow_UsingClassData(TestData data)
+        {
+            // arrange
+            var determinator = new RowDeterminator();
+
+            // act
+            var result = determinator.IsThisAWin(data.Input);
+            // assert
+            Assert.Equal(data.Expected, result);
+        }
+        public class RowDeterminatorData : IEnumerable<object[]>
+        {
+            private readonly List<object[]> _testData = new List<object[]>
+            {
+                new object[]
+                {
+                    new TestData
+                    {
+                        Input = new[]
+                        {
+                            new[] {1, 1, 1},
+                            new[] {0, 0, 0},
+                            new[] {0, 0, 0},
+                        },
+                        Expected = true
+                    },
+                },
+                new object[]
+                {
+                    new TestData
+                    {
+                        Input = new[]
+                        {
+                            new[] {0, 0, 0},
+                            new[] {1, 1, 1},
+                            new[] {0, 0, 0},
+                        },
+                        Expected = true
+                    },
+                },
+                new object[]
+                {
+                    new TestData
+                    {
+                        Input = new[]
+                        {
+                            new[] {0, 1, 1},
+                            new[] {0, 0, 0},
+                            new[] {0, 0, 0},
+                        },
+                        Expected = false
+                    },
+                },
+            };  
+            public IEnumerator<object[]> GetEnumerator() => _testData.GetEnumerator();
+            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        }
+
+        // test winning column
         [Fact]
         public void ShouldTestWinningColumn()
         {
@@ -43,6 +105,8 @@ namespace tests.TicTacToe
             // assert
             Assert.True(result);
         }
+
+        // test winning diagonal
         [Fact]
         public void ShouldTestWinningLeftRightDiagonal()
         {
@@ -80,7 +144,7 @@ namespace tests.TicTacToe
             Assert.Equal(expected, result);
         }
         [Theory]
-        [ClassData(typeof(DeterminatorTestData))]
+        [ClassData(typeof(DiagonalDeterminatorTestData))]
         public void ShouldTestUsingClassData_WinningDiagonal(TestData data)
         {
             // arrange
@@ -92,7 +156,7 @@ namespace tests.TicTacToe
             // assert
             Assert.Equal(data.Expected, result);
         }
-        public class DeterminatorTestData : IEnumerable<object[]>
+        public class DiagonalDeterminatorTestData : IEnumerable<object[]>
         {
             private readonly List<object[]> _testData = new List<object[]>
             {
