@@ -10,10 +10,11 @@ namespace TicTacToe
             // win
             int player = 1;
             int count = 0;
-            if (board == null || board.Length == 0 || board[0][0] == 0 )
+            // TODO: hardcoded - only works for 1st column
+            /* if (board == null || board.Length == 0 || board[0][0] == 0 )
             {
                 return false;
-            }
+            } */
             for (int i = 0; i < board.Length; i++)
             {
                 for (int j = 0; j < board.Length; j++)

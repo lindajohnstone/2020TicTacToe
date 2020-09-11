@@ -6,12 +6,13 @@ namespace TicTacToe
     {
         public bool IsThisAWin(int[][] board)
         {
-            foreach (int[] row in board)
-            {
-                /* if (row == null || row.Length == 0 || row[0] == 0)
+            // TODO: if statement needs refactoring 
+            /* if (row == null || row.Length == 0 || row[0] == 0)
                 {
                     return false;
                 } */
+            foreach (int[] row in board)
+            {
                 return !row.Distinct().Skip(1).Any();
             }
             return false;
