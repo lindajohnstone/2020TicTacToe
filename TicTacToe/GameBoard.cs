@@ -90,5 +90,22 @@ namespace TicTacToe
                 Console.WriteLine("Move accepted, well done you've won the game! ");
             }
         }
+
+        public bool IsAlreadyOccupied(int x, int y)
+        {
+            // logic:
+            // check using IsOccupied() if board[x][y] is filled
+            // if it is, return false
+            // if not, place the coords
+            //int player = 1;
+            if (IsOccupied(x, y))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

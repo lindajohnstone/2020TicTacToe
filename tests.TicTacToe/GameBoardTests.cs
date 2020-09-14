@@ -82,5 +82,23 @@ namespace tests.TicTacToe
             // assert
             Assert.True(win);
         } 
+        // Validate position
+        [Fact]
+        public void ShouldCheckIfPositionAlreadyFilled()
+        {
+            // arrange
+            IWinningBoard[] determinators = new [] {new RowDeterminator()};
+            var board = new GameBoard(determinators);
+            var x = 0;
+            var y = 0;
+            var player = 1;
+            board.Place(player, 0, 0); // to ensure position has been filled
+
+            // act
+            board.Place(player, x, y);
+            var result = board.IsAlreadyOccupied(x, y);
+            //assert
+            Assert.False(result);
+        }
     }
 }
