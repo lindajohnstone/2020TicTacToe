@@ -99,6 +99,27 @@ namespace tests.TicTacToe
             var result = board.IsAlreadyOccupied(x, y);
             //assert
             Assert.False(result);
+        } 
+        [Theory]
+        [InlineData(0, 0, false)]
+        [InlineData(1, 1, true)]
+        [InlineData(2, 2, true)]
+        public void ShouldCheckIfPositionAlreadyFilled_TheoryTest(int pos1, int pos2, bool expected)
+        {
+            // arrange
+            IWinningBoard[] determinators = new [] {new RowDeterminator()};
+            var board = new GameBoard(determinators);
+            var x = 0;
+            var y = 0;
+            var player = 1;
+            board.Place(player, x, y); // to ensure position has been filled
+
+            // act
+            //board.Place(player, pos1, pos2);
+            var result = board.IsAlreadyOccupied(pos1, pos2);
+
+            //assert
+            Assert.Equal(expected, result);
         }
     }
 }
