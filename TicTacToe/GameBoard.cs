@@ -85,9 +85,14 @@ namespace TicTacToe
 
         private void EndGame()
         {
-            if (IsThisAWin())
+            // logic:
+            // if this is a win
+            // write message
+            // end game
+            bool result = IsThisAWin();
+            if (result)
             {
-                Console.WriteLine("Move accepted, well done you've won the game! ");
+                Console.WriteLine("Move accepted, well done you've won the game!");
             }
         }
 
