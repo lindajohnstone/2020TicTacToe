@@ -56,6 +56,7 @@ namespace TicTacToe
                 Place(1, position.X, position.Y);
                 Print();
             }
+            EndGame();
         }
 
         public PlayerPosition GetPlayerInput()
@@ -84,8 +85,7 @@ namespace TicTacToe
 
         private void EndGame()
         {
-            bool result = IsThisAWin();// does not know what this is??
-            if (result)
+            if (IsThisAWin())
             {
                 Console.WriteLine("Move accepted, well done you've won the game! ");
             }
