@@ -163,6 +163,32 @@ namespace tests.TicTacToe
                         Expected = false
                     },
                 },
+                new object[]
+                {
+                    new TestData
+                    {
+                        Input = new[]
+                        {
+                            new[] {0, 1, 1},
+                            new[] {0, 0, 0},
+                            new[] {1, 0, 0},
+                        },
+                        Expected = false
+                    },
+                },
+                new object[]
+                {
+                    new TestData
+                    {
+                        Input = new[]
+                        {
+                            new[] {0, 0, 1},
+                            new[] {0, 1, 0},
+                            new[] {1, 0, 0},
+                        },
+                        Expected = false
+                    },
+                },
             };  
             public IEnumerator<object[]> GetEnumerator() => _testData.GetEnumerator();
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
