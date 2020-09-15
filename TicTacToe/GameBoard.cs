@@ -55,8 +55,9 @@ namespace TicTacToe
                 var position = GetPlayerInput();
                 Place(1, position.X, position.Y);
                 Print();
+                EndGame();
             }
-            EndGame();
+            
         }
 
         public PlayerPosition GetPlayerInput()
@@ -69,14 +70,7 @@ namespace TicTacToe
 
         public void Place(int player, int x, int y)
         {
-            if (player == 1)
-            {
-                board[x][y] = 1;
-            } 
-            else
-            {
-                board[x][y] = 2;
-            }
+                board[x][y] = player;
         }
         public bool IsOccupied(int x, int y)
         {
@@ -89,8 +83,7 @@ namespace TicTacToe
             // if this is a win
             // write message
             // end game
-            bool result = IsThisAWin();
-            if (result)
+            if (IsThisAWin())
             {
                 Console.WriteLine("Move accepted, well done you've won the game!");
             }
