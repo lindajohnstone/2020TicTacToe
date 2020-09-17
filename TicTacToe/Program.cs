@@ -13,6 +13,7 @@ namespace TicTacToe
                 new DiagonalDeterminator(),
             };
             var board = new GameBoard(determinators);
+            Console.WriteLine(Constants.Welcome);
             board.Print();
             board.PlayGame();
         }
