@@ -125,38 +125,6 @@ namespace tests.TicTacToe
             //assert
             Assert.Equal(expected, result);
         }
-        [Theory]
-        [ClassData(typeof(PositionFilledData))]
-        public void ShouldCheckPositionAlreadyFilled_ClassData(int pos1, int pos2, bool expected)
-        {
-            // arrange
-            IWinningBoard[] determinators = new [] {new RowDeterminator()};
-            var board = new GameBoard(determinators);
-            var x = 0;
-            var y = 0;
-            var player = 1;
-            board.Place(player, x, y); // to ensure position has been filled
-
-            // act
-            var result = board.IsAlreadyOccupied(pos1, pos2);
-            // assert
-            Assert.Equal(expected, result);
-        }
-
-        public class PositionFilledData : IEnumerable<object[]>
-        {
-            private readonly List<object[]> _data = new List<object[]>
-        {
-            new object[] {1, 2, true},
-            new object[] {0, 0, false},
-            new object[] {2, 0, true},
-            new object[] {1, 1, true},
-        };
-
-        public IEnumerator<object[]> GetEnumerator() => _data.GetEnumerator();
-
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-        }
         
     }
 }

@@ -18,5 +18,27 @@ namespace tests.TicTacToe
             Assert.Equal(expectedX, position.X);
             Assert.Equal(expectedY, position.Y);
         }
+        [Theory]
+        [InlineData(0,0, true)]
+
+        public void ShouldCheckValidUserInput(int x, int y, bool expected)
+        {
+            // arrange
+            int[][] board = new[]
+            {
+                new[] {0, 0, 0},
+                new[] {0, 0, 0},
+                new[] {0, 0, 0},
+            };
+            IValidator[] validators = new [] {new InputValidator()};
+            var position = new GameBoard(validators);
+
+            // act
+            var result = position.IsValid(board, x, y);
+
+            // assert
+            Assert.Equal(expected, result);
+        }
     }
+        
 }

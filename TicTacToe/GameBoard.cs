@@ -89,7 +89,7 @@ namespace TicTacToe
         {
                 board[x][y] = player;
         }
-        public bool IsOccupied(int x, int y)
+        public bool IsOccupied(int x, int y)// no longer required
         {
             return board[x][y] != 0;
         }
@@ -106,7 +106,7 @@ namespace TicTacToe
             }
         }
 
-        public bool IsAlreadyOccupied(int x, int y)
+        public bool IsAlreadyOccupied(int x, int y) // no longer required
         {
             // logic:
             // check using IsOccupied() if board[x][y] is filled
