@@ -193,43 +193,9 @@ namespace tests.TicTacToe
             public IEnumerator<object[]> GetEnumerator() => _testData.GetEnumerator();
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         }
-        // test winning diagonal
-        [Fact]
-        public void ShouldTestWinningLeftRightDiagonal()
-        {
-            // arrange
-            int[][] board = new[]
-            {
-                new[] { 1, 0, 0 },
-                new[] { 0, 1, 0 },
-                new[] { 0, 0, 1 },
-            };
-            var determinator = new DiagonalDeterminator();
-
-            // act
-            var result = determinator.IsThisAWin(board);
-
-            // assert
-            Assert.True(result);
-        }
-
-        [Theory]
-        [InlineData(new[] { 1, 0, 0 }, new[] { 0, 1, 0 }, new[] { 0, 0, 1 }, true)]
-        public void ShouldTestWinningDiagonal(int[] one, int[] two, int[] three, bool expected)
-        {
-            // arrange
-            int[][] board = new[]
-            {
-                one, two, three
-            };
-            var determinator = new DiagonalDeterminator();
-
-            // act
-            var result = determinator.IsThisAWin(board);
-
-            // assert
-            Assert.Equal(expected, result);
-        }
+        
+        #region Diagonal Determinator
+    
         [Theory]
         [ClassData(typeof(DiagonalDeterminatorTestData))]
         public void ShouldTestUsingClassData_WinningDiagonal(TestData data)
@@ -291,6 +257,7 @@ namespace tests.TicTacToe
             public IEnumerator<object[]> GetEnumerator() => _testData.GetEnumerator();
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         }
+        # endregion
         public class TestData
         {
             public int[][] Input;

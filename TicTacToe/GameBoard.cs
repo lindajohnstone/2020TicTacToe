@@ -13,9 +13,21 @@ namespace TicTacToe
             };
         private IWinningBoard[] _determinators;
 
+        private IValidator[] _validators;
+
         public GameBoard(IWinningBoard[] determinators)
         {
             _determinators = determinators;
+        }
+
+        public GameBoard(IValidator[] validators)
+        {
+            _validators = validators;
+        }
+
+        public bool IsValid(int[][] board, int x, int y)
+        {
+            return _validators.Any(_ => _.IsValid(board, x, y));
         }
 
         public void Print()
@@ -53,6 +65,11 @@ namespace TicTacToe
             for (int i = 0; i < 3; i++)
             {
                 var position = GetPlayerInput();
+                /* if (!IsAlreadyOccupied(position.X, position.Y))
+                {
+                    Console.WriteLine("Oh no, a piece is already at this place! Try again...");
+                    GetPlayerInput();
+                } */
                 Place(1, position.X, position.Y);
                 Print();
                 EndGame();

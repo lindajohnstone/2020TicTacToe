@@ -1,0 +1,30 @@
+using TicTacToe;
+using Xunit;
+
+namespace tests.TicTacToe
+{
+    public class ValidatorTests
+    {
+        [Theory]
+        [InlineData(0,1, true)]
+        [InlineData(0,0, false)]
+        public void ShouldCheckIfPositionOccupied(int x, int y, bool expected)
+        {
+            int[][] board = new[] 
+            {                
+                new[] { 1, 0, 0 },                
+                new[] { 0, 1, 0 },                
+                new[] { 0, 0, 1 },                            
+            };
+
+            IValidator[] validators = new [] {new PositionValidator()};
+            var position = new GameBoard(validators);
+
+            // act
+            var result = position.IsValid(board, x, y);
+
+            // assert
+            Assert.Equal(expected, result);
+        }
+    }
+}
