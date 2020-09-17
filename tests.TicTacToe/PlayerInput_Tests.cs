@@ -13,31 +13,25 @@ namespace tests.TicTacToe
         public void Should_Receive_Input_Values(string actual, int expectedX, int expectedY)
         {
             // arrange
-            var position = new PlayerPosition(actual);
+            var position = new PlayerInput(actual);
             // assert
             Assert.Equal(expectedX, position.X);
             Assert.Equal(expectedY, position.Y);
         }
+        
         [Theory]
-        [InlineData(0,0, true)]
-
-        public void ShouldCheckValidUserInput(int x, int y, bool expected)
+        [InlineData("1,1",true)]
+        [InlineData("0,0",true)]
+        [InlineData("a,b",false)]
+        [InlineData("0 0", false)] 
+        [InlineData("abc,0", false)]
+        public void Should_check_valid_user_input(string input, bool expected)
         {
-            // arrange
-            int[][] board = new[]
-            {
-                new[] {0, 0, 0},
-                new[] {0, 0, 0},
-                new[] {0, 0, 0},
-            };
-            IValidator[] validators = new [] {new InputValidator()};
-            var position = new GameBoard(validators);
-
             // act
-            var result = position.IsValid(board, x, y);
+            var actual = input.UserInputIsValid();
 
             // assert
-            Assert.Equal(expected, result);
+            Assert.Equal(expected, actual);
         }
     }
         

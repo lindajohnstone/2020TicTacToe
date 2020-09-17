@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace TicTacToe
 {
-    public class PlayerPosition
+    public class PlayerInput
     {
-        public PlayerPosition(string value)
+        public PlayerInput(string value)
         {
             var userInput = value.Split(",");
             int.TryParse(userInput[0], out var x);

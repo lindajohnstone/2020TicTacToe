@@ -77,14 +77,16 @@ namespace TicTacToe
             
         }
 
-        public PlayerPosition GetPlayerInput()
+        private PlayerInput GetPlayerInput()
         {
             Console.WriteLine("Player 1 enter a coord x,y to place your X or enter 'q' to give up: ");
             var coords = Console.ReadLine();
-            var position = new PlayerPosition(coords);
+            if (coords.Equals("q", StringComparison.CurrentCultureIgnoreCase))
+                Environment.Exit(0);
+            var position = new PlayerInput(coords);
             return position;
         }
-
+        
         public void Place(int player, int x, int y)
         {
                 board[x][y] = player;
