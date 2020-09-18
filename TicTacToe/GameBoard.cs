@@ -21,6 +21,11 @@ namespace TicTacToe
             _validators = validators;
         }
 
+        public bool IsThisAWin()
+        {
+            return _determinators.Any(_ => _.IsThisAWin(board));
+        }
+
         public bool IsValid(int[][] board, int x, int y)
         {
             return _validators.All(_ => _.IsValid(board, x, y));
@@ -28,7 +33,7 @@ namespace TicTacToe
 
         public void Print()
         {
-            Console.WriteLine("Here's the current board:");
+            Console.WriteLine(Constants.MoveAccepted);
             for (int i = 0; i < board.Length; i++)
             {
                 for (int j = 0; j < board.Length; j++)
@@ -51,39 +56,35 @@ namespace TicTacToe
             }
         }
 
-        public bool IsThisAWin()
-        {
-            return _determinators.Any(_ => _.IsThisAWin(board));
-        }
-
         public void PlayGame()
         {
             for (int i = 0; i < 3; i++)
             {
-                var position = GetPlayerInput();
-                
+                var position = GetValidPlayerInput();
                 Place(1, position.X, position.Y);
                 Print();
                 EndGame();
-            }
-            
+            } 
         }
 
-        private PlayerInput GetPlayerInput()
+        private PlayerInput GetValidPlayerInput()
         {
             Console.WriteLine("Player 1 enter a coord x,y to place your X or enter 'q' to give up: ");
             var coords = Console.ReadLine();
             if (coords.Equals("q", StringComparison.CurrentCultureIgnoreCase))
+            {
+                Console.WriteLine(Constants.Quit);
                 Environment.Exit(0);
+            } 
             if (!coords.UserInputIsValid())
             {
                 Console.WriteLine("Incorrect format. Please try again. ");
-                return GetPlayerInput();
+                return GetValidPlayerInput();
             }
             var position = new PlayerInput(coords);
             if (!IsValid(board, position.X, position.Y))
             {
-                return GetPlayerInput();
+                return GetValidPlayerInput();
             }
             return position;
         }
@@ -92,37 +93,12 @@ namespace TicTacToe
         {
                 board[x][y] = player;
         }
-        public bool IsOccupied(int x, int y)// no longer required
-        {
-            return board[x][y] != 0;
-        }
 
         private void EndGame()
         {
-            // logic:
-            // if this is a win
-            // write message
-            // end game
             if (IsThisAWin())
             {
-                Console.WriteLine("Move accepted, well done you've won the game!");
-            }
-        }
-
-        public bool IsAlreadyOccupied(int x, int y) // no longer required
-        {
-            // logic:
-            // check using IsOccupied() if board[x][y] is filled
-            // if it is, return false
-            // if not, place the coords
-            //int player = 1;
-            if (IsOccupied(x, y))
-            {
-                return false;
-            }
-            else
-            {
-                return true;
+                Console.WriteLine(Constants.IsAWin);
             }
         }
     }
