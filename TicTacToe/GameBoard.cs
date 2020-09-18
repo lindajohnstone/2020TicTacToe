@@ -15,13 +15,9 @@ namespace TicTacToe
 
         private IValidator[] _validators;
 
-        public GameBoard(IWinningBoard[] determinators)
+        public GameBoard(IWinningBoard[] determinators, IValidator[] validators)
         {
             _determinators = determinators;
-        }
-
-        public GameBoard(IValidator[] validators)
-        {
             _validators = validators;
         }
 
@@ -85,6 +81,10 @@ namespace TicTacToe
                 return GetPlayerInput();
             }
             var position = new PlayerInput(coords);
+            if (!IsValid(board, position.X, position.Y))
+            {
+                return GetPlayerInput();
+            }
             return position;
             // logic:
             // call user input - string extensions class

@@ -12,7 +12,12 @@ namespace TicTacToe
                 new ColumnDeterminator(),
                 new DiagonalDeterminator(),
             };
-            var board = new GameBoard(determinators);
+            var validators = new IValidator[]
+            {
+                new ArrayRangeValidator(),
+                new PositionValidator()
+            };
+            var board = new GameBoard(determinators, validators);
             Console.WriteLine(Constants.Welcome);
             board.Print();
             board.PlayGame();
