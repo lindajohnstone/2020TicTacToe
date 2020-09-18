@@ -65,11 +65,7 @@ namespace TicTacToe
             for (int i = 0; i < 3; i++)
             {
                 var position = GetPlayerInput();
-                /* if (!IsAlreadyOccupied(position.X, position.Y))
-                {
-                    Console.WriteLine("Oh no, a piece is already at this place! Try again...");
-                    GetPlayerInput();
-                } */
+                
                 Place(1, position.X, position.Y);
                 Print();
                 EndGame();
@@ -83,8 +79,19 @@ namespace TicTacToe
             var coords = Console.ReadLine();
             if (coords.Equals("q", StringComparison.CurrentCultureIgnoreCase))
                 Environment.Exit(0);
+            if (!coords.UserInputIsValid())
+            {
+                Console.WriteLine("Incorrect format. Please try again. ");
+                return GetPlayerInput();
+            }
             var position = new PlayerInput(coords);
             return position;
+            // logic:
+            // call user input - string extensions class
+            // if true
+            // send coords to validators
+            // if false
+            // return GetPlayerInput 
         }
         
         public void Place(int player, int x, int y)
