@@ -16,7 +16,7 @@ namespace tests.TicTacToe
         {
             // arrange
             IWinningBoard[] determinators = new [] {new RowDeterminator()};
-            var board = new GameBoard(determinators);
+            var board = new GameBoard(determinators, new IValidator[] {});
             var player = 1;
 
             // act
@@ -32,7 +32,7 @@ namespace tests.TicTacToe
         {
             // arrange
             IWinningBoard[] determinators = new [] {new RowDeterminator()};
-            var board = new GameBoard(determinators);
+            var board = new GameBoard(determinators, new IValidator[] {});
 
             // act
             board.Place(1,0,0);
@@ -50,7 +50,7 @@ namespace tests.TicTacToe
         {
             // arrange
             IWinningBoard[] determinators = new [] {new ColumnDeterminator()};
-            var board = new GameBoard(determinators);
+            var board = new GameBoard(determinators, new IValidator[] {});
 
             // act
             board.Place(1,0,0);
@@ -66,7 +66,7 @@ namespace tests.TicTacToe
         {
             // arrange
             IWinningBoard[] determinators = new [] {new RowDeterminator()};
-            var board = new GameBoard(determinators);
+            var board = new GameBoard(determinators, new IValidator[] {});
             var player = 1;
             var pos1 = 0;
             var pos2 = 1;
@@ -90,7 +90,7 @@ namespace tests.TicTacToe
         {
             // arrange
             IWinningBoard[] determinators = new [] {new RowDeterminator()};
-            var board = new GameBoard(determinators);
+            var board = new GameBoard(determinators, new IValidator[] {});
             var x = 0;
             var y = 0;
             var player = 1;
@@ -112,7 +112,7 @@ namespace tests.TicTacToe
         {
             // arrange
             IWinningBoard[] determinators = new [] {new RowDeterminator()};
-            var board = new GameBoard(determinators);
+            var board = new GameBoard(determinators, new IValidator[] {});
             var x = 0;
             var y = 0;
             var player = 1;

@@ -23,7 +23,7 @@ namespace TicTacToe
 
         public bool IsValid(int[][] board, int x, int y)
         {
-            return _validators.Any(_ => _.IsValid(board, x, y));
+            return _validators.All(_ => _.IsValid(board, x, y));
         }
 
         public void Print()
@@ -86,12 +86,6 @@ namespace TicTacToe
                 return GetPlayerInput();
             }
             return position;
-            // logic:
-            // call user input - string extensions class
-            // if true
-            // send coords to validators
-            // if false
-            // return GetPlayerInput 
         }
         
         public void Place(int player, int x, int y)
