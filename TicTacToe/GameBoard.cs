@@ -33,7 +33,7 @@ namespace TicTacToe
 
         public void Print()
         {
-            Console.WriteLine(Constants.MoveAccepted);
+            Console.WriteLine("Here's the current board:");
             for (int i = 0; i < board.Length; i++)
             {
                 for (int j = 0; j < board.Length; j++)
@@ -62,6 +62,7 @@ namespace TicTacToe
             {
                 var position = GetValidPlayerInput();
                 Place(1, position.X, position.Y);
+                Console.WriteLine(Constants.MoveAccepted);
                 Print();
                 EndGame();
             } 
@@ -99,6 +100,7 @@ namespace TicTacToe
             if (IsThisAWin())
             {
                 Console.WriteLine(Constants.IsAWin);
+                Environment.Exit(0);
             }
         }
     }
