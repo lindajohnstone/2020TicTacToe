@@ -62,7 +62,7 @@ namespace TicTacToe
             {
                 var position = GetValidPlayerInput();
                 Place(1, position.X, position.Y);
-                Console.WriteLine(Constants.MoveAccepted);
+                Console.Write(Constants.MoveAccepted);
                 Print();
                 EndGame();
             } 
