@@ -2,6 +2,6 @@ namespace TicTacToe
 {
     public interface IValidator
     {
-        (bool, string) IsValid(int[][] board, int x, int y);
+        bool IsValid(int[][] board, int x, int y);
     }
 }

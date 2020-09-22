@@ -58,9 +58,10 @@ namespace TicTacToe
 
         public void PlayGame()
         {
+            int player = 1;
             for (int i = 0; i < 3; i++)
             {
-                var position = GetValidPlayerInput();
+                var position = GetValidPlayerInput(player);
                 Place(1, position.X, position.Y);
                 Console.WriteLine(Constants.MoveAccepted);
                 Print();
@@ -68,9 +69,9 @@ namespace TicTacToe
             } 
         }
 
-        private PlayerInput GetValidPlayerInput()
+        private PlayerInput GetValidPlayerInput(int player)
         {
-            Console.WriteLine("Player 1 enter a coord x,y to place your X or enter 'q' to give up: ");
+            Console.WriteLine("Player {0} enter a coord x,y to place your X or enter 'q' to give up: ", player);
             var coords = Console.ReadLine();
             if (coords.Equals("q", StringComparison.CurrentCultureIgnoreCase))
             {
@@ -80,12 +81,12 @@ namespace TicTacToe
             if (!coords.UserInputIsValid())
             {
                 Console.WriteLine("Incorrect format. Please try again. ");
-                return GetValidPlayerInput();
+                return GetValidPlayerInput(player);
             }
             var position = new PlayerInput(coords);
             if (!IsValid(board, position.X, position.Y))
             {
-                return GetValidPlayerInput();
+                return GetValidPlayerInput(player);
             }
             return position;
         }
