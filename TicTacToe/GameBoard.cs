@@ -58,20 +58,21 @@ namespace TicTacToe
 
         public void PlayGame()
         {
-            int player = 1;
             for (int i = 0; i < 3; i++)
             {
-                var position = GetValidPlayerInput(player);
+                var position = GetValidPlayerInput();
                 Place(1, position.X, position.Y);
                 Console.WriteLine(Constants.MoveAccepted);
                 Print();
                 EndGame();
             } 
         }
-
-        private PlayerInput GetValidPlayerInput(int player)
+        
+        private PlayerInput GetValidPlayerInput()
         {
-            Console.WriteLine("Player {0} enter a coord x,y to place your X or enter 'q' to give up: ", player);
+            int player = 1;
+            string token = "X";
+            Console.WriteLine("Player {0} enter a coord x,y to place your {1} or enter 'q' to give up: ", player, token);
             var coords = Console.ReadLine();
             if (coords.Equals("q", StringComparison.CurrentCultureIgnoreCase))
             {
@@ -81,12 +82,12 @@ namespace TicTacToe
             if (!coords.UserInputIsValid())
             {
                 Console.WriteLine("Incorrect format. Please try again. ");
-                return GetValidPlayerInput(player);
+                return GetValidPlayerInput();
             }
             var position = new PlayerInput(coords);
             if (!IsValid(board, position.X, position.Y))
             {
-                return GetValidPlayerInput(player);
+                return GetValidPlayerInput();
             }
             return position;
         }
@@ -100,6 +101,7 @@ namespace TicTacToe
         {
             if (IsThisAWin())
             {
+                Console.Write(Constants.MoveAccepted);
                 Console.WriteLine(Constants.IsAWin);
                 Environment.Exit(0);
             }
