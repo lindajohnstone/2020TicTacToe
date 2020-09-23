@@ -14,11 +14,16 @@ namespace TicTacToe
         private IWinningBoard[] _determinators;
 
         private IValidator[] _validators;
-
+        private Player[] _players;
         public GameBoard(IWinningBoard[] determinators, IValidator[] validators)
         {
             _determinators = determinators;
             _validators = validators;
+            _players = new[]
+            {
+                new Player (1, "X"),
+                new Player (2, "O")
+            };
         }
 
         public bool IsThisAWin()
@@ -58,21 +63,25 @@ namespace TicTacToe
 
         public void PlayGame()
         {
-            
-            for (int i = 0; i < 3; i++)
+            var maxMoves = board.Sum(_ => _.Count());
+            while (maxMoves != 0)
             {
-                var position = GetValidPlayerInput();
-                Place(player, position.X, position.Y);
+                var currentPlayer = _players[(maxMoves + 1) % 2]; 
+                var position = GetValidPlayerInput(currentPlayer);
+                
+                Place(currentPlayer.PlayerId, position.X, position.Y);
                 Console.Write(Constants.MoveAccepted);
                 Print();
                 EndGame();
+                maxMoves--;
             } 
+            Console.WriteLine("Game over. There is a draw.");
         }
         
-        private PlayerInput GetValidPlayerInput()
+        private PlayerInput GetValidPlayerInput(Player player)
         {
             
-            Console.WriteLine($"Player {player} enter a coord x,y to place your {token} or enter 'q' to give up: ");
+            Console.WriteLine($"Player {player.PlayerId} enter a coord x,y to place your {player.Marker} or enter 'q' to give up: ");
             var coords = Console.ReadLine();
             if (coords.Equals("q", StringComparison.CurrentCultureIgnoreCase))
             {
@@ -82,12 +91,12 @@ namespace TicTacToe
             if (!coords.UserInputIsValid())
             {
                 Console.WriteLine("Incorrect format. Please try again. ");
-                return GetValidPlayerInput();
+                return GetValidPlayerInput(player);
             }
             var position = new PlayerInput(coords);
             if (!IsValid(board, position.X, position.Y))
             {
-                return GetValidPlayerInput();
+                return GetValidPlayerInput(player);
             }
             return position;
         }
