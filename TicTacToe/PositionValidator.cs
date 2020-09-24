@@ -2,10 +2,12 @@ namespace TicTacToe
 {
     public class PositionValidator : IValidator
     {
-        public bool IsValid(int[][] board, int x, int y)
+        const string errorMessage = "Coord is already occupied. Please try again.";
+        public Result IsValid(int[][] board, int x, int y)
         {
             
-            return board[x][y] == 0;
+            Result result = new Result(board[x][y] == 0, errorMessage);
+            return result;
         }
     }
 }

@@ -33,7 +33,15 @@ namespace TicTacToe
 
         public bool IsValid(int[][] board, int x, int y)
         {
-            return _validators.All(_ => _.IsValid(board, x, y));
+            var results =  _validators.Select(_ => _.IsValid(board, x, y)).ToArray();
+            foreach(var result in results)
+            {
+                if (!result.Success)
+                {
+                    Console.WriteLine(result.ErrorMessage);
+                }
+            }
+            return results.All(_ => _.Success);
         }
 
         public void Print()
@@ -75,7 +83,7 @@ namespace TicTacToe
                 EndGame();
                 maxMoves--;
             } 
-            Console.WriteLine("Game over. There is a draw.");
+            Console.WriteLine(Constants.Draw);
         }
         
         private PlayerInput GetValidPlayerInput(Player player)
