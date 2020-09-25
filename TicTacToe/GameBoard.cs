@@ -15,10 +15,13 @@ namespace TicTacToe
 
         private IValidator[] _validators;
         private Player[] _players;
-        public GameBoard(IWinningBoard[] determinators, IValidator[] validators)
+        private IOutput _output;
+
+        public GameBoard(IWinningBoard[] determinators, IValidator[] validators, ConsoleOutput output)
         {
             _determinators = determinators;
             _validators = validators;
+            _output = output;
             _players = new[]
             {
                 new Player (1, "X"),
@@ -38,7 +41,7 @@ namespace TicTacToe
             {
                 if (!result.Success)
                 {
-                    Console.WriteLine(result.ErrorMessage);
+                    _output.OutputTextWithNewLine(result.ErrorMessage);
                 }
             }
             return results.All(_ => _.Success);
@@ -46,7 +49,7 @@ namespace TicTacToe
 
         public void Print()
         {
-            Console.WriteLine("Here's the current board:");
+            _output.OutputTextWithNewLine("Here's the current board:");
             for (int i = 0; i < board.Length; i++)
             {
                 for (int j = 0; j < board.Length; j++)
@@ -54,18 +57,18 @@ namespace TicTacToe
                     var coords = board[i][j];
                     if (coords == 2)
                     {
-                        Console.Write("O ");
+                        _output.OutputText("O ");
                     }
                     else if (coords == 1)
                     {
-                        Console.Write("X ");
+                        _output.OutputText("X ");
                     }
                     else
                     {
-                        Console.Write(". ");
+                        _output.OutputText(". ");
                     }
                 }
-                Console.WriteLine();
+                _output.OutputTextWithNewLine(Environment.NewLine);
             }
         }
 
@@ -83,22 +86,22 @@ namespace TicTacToe
                 EndGame();
                 maxMoves--;
             } 
-            Console.WriteLine(Constants.Draw);
+            _output.OutputTextWithNewLine(Constants.Draw);
         }
         
         private PlayerInput GetValidPlayerInput(Player player)
         {
             
-            Console.WriteLine($"Player {player.PlayerId} enter a coord x,y to place your {player.Marker} or enter 'q' to give up: ");
+            _output.OutputTextWithNewLine($"Player {player.PlayerId} enter a coord x,y to place your {player.Marker} or enter 'q' to give up: ");
             var coords = Console.ReadLine();
             if (coords.Equals("q", StringComparison.CurrentCultureIgnoreCase))
             {
-                Console.WriteLine(Constants.Quit);
+                _output.OutputTextWithNewLine(Constants.Quit);
                 Environment.Exit(0);
             } 
             if (!coords.UserInputIsValid())
             {
-                Console.WriteLine("Incorrect format. Please try again. ");
+                _output.OutputTextWithNewLine("Incorrect format. Please try again. ");
                 return GetValidPlayerInput(player);
             }
             var position = new PlayerInput(coords);
@@ -118,8 +121,8 @@ namespace TicTacToe
         {
             if (IsThisAWin())
             {
-                Console.Write(Constants.MoveAccepted);
-                Console.WriteLine(Constants.IsAWin);
+                _output.OutputText(Constants.MoveAccepted);
+                _output.OutputTextWithNewLine(Constants.IsAWin);
                 Environment.Exit(0);
             }
         }

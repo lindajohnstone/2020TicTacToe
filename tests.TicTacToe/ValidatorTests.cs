@@ -19,7 +19,7 @@ namespace tests.TicTacToe
             };
 
             IValidator[] validators = new [] {new PositionValidator()};
-            var position = new GameBoard(new IWinningBoard[] {}, validators);
+            var position = new GameBoard(new IWinningBoard[] {}, validators, new ConsoleOutput());
 
             // act
             var result = position.IsValid(board, x, y);
@@ -43,7 +43,7 @@ namespace tests.TicTacToe
                 new[] { 0, 0, 0 },                            
             };
             IValidator[] validators = new [] {new ArrayRangeValidator()};
-            var position = new GameBoard(new IWinningBoard[] {}, validators);
+            var position = new GameBoard(new IWinningBoard[] {}, validators, new ConsoleOutput());
 
             // act
             var result = position.IsValid(board, x, y);

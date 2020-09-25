@@ -12,13 +12,12 @@ namespace tests.TicTacToe
         {
             // arrange
             IWinningBoard[] determinators = new [] {new RowDeterminator()};
-            var board = new GameBoard(determinators, new IValidator[] {});
+            var board = new GameBoard(determinators, new IValidator[] {}, new ConsoleOutput());
 
             // act
             board.Place(1,0,0);
             board.Place(1,0,1);
             board.Place(1,0,2);
-            //board.Print();
             var result = board.IsThisAWin();
 
             // assert
@@ -30,7 +29,7 @@ namespace tests.TicTacToe
         {
             // arrange
             IWinningBoard[] determinators = new [] {new ColumnDeterminator()};
-            var board = new GameBoard(determinators, new IValidator[] {});
+            var board = new GameBoard(determinators, new IValidator[] {}, new ConsoleOutput());
 
             // act
             board.Place(1,0,0);

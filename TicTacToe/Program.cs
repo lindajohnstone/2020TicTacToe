@@ -17,8 +17,9 @@ namespace TicTacToe
                 new ArrayRangeValidator(),
                 new PositionValidator()
             };
+            var output = new ConsoleOutput();
             
-            var board = new GameBoard(determinators, validators);
+            var board = new GameBoard(determinators, validators, output);
             Console.WriteLine(Constants.Welcome);
             board.Print();
             board.PlayGame();
