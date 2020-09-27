@@ -8,6 +8,7 @@ namespace tests.TicTacToe
         [Theory]
         [InlineData(0,1, true)]
         [InlineData(0,0, false)]
+        [InlineData(0,9, false)]
         public void ShouldCheckIfPositionOccupied(int x, int y, bool expected)
         {
             // arrange
@@ -45,6 +46,32 @@ namespace tests.TicTacToe
             IValidator[] validators = new [] {new ArrayRangeValidator()};
             var position = new GameBoard(new IWinningBoard[] {}, validators, new ConsoleOutput());
 
+            // act
+            var result = position.IsValid(board, x, y);
+
+            // assert
+            Assert.Equal(expected, result);
+        }
+        [Theory]
+        [InlineData(1,1, true)]
+        [InlineData(2,0, true)]
+        [InlineData(9,0, false)]
+        public void ShouldReturnCorrectValidatorOutput(int x, int y, bool expected)
+        {
+            int[][] board = new[]
+             {
+                new[] { 1, 1, 1 },
+                new[] { 0, 0, 0 },
+                new[] { 0, 0, 0 },
+            }; 
+            var validators = new IValidator[]
+            {
+                new ArrayRangeValidator(),
+                new PositionValidator()
+            };
+            ConsoleOutput userOutput = new ConsoleOutput();
+            var position = new GameBoard(new IWinningBoard[] {}, validators, userOutput);
+            
             // act
             var result = position.IsValid(board, x, y);
 

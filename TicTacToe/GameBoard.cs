@@ -68,7 +68,7 @@ namespace TicTacToe
                         _output.OutputText(". ");
                     }
                 }
-                _output.OutputTextWithNewLine(Environment.NewLine);
+                _output.OutputText(Environment.NewLine);
             }
         }
 
