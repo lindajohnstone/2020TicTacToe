@@ -91,16 +91,23 @@ namespace TicTacToe
         }
         public bool IsValid(int[][] board, int x, int y)
         {
-            var results =  _validators.Select(_ => _.IsValid(board, x, y)).ToArray();
-            foreach(var result in results)
+            var output = false;
+            foreach (var validator in _validators)
             {
-                if (!result.Success)
+                var result = validator.IsValid(board, x, y);
+                if (result.Success)
                 {
-                    _output.OutputTextWithNewLine(result.ErrorMessage);
+                    output = true;
+                    continue;
+                }
+                else
+                {
+                    _output.OutputText(result.ErrorMessage);
+                    output = false;
                     break;
                 }
             }
-            return results.All(_ => _.Success);
+            return output;
         }
         public void Place(int player, int x, int y)
         {
