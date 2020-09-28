@@ -20,8 +20,7 @@ namespace TicTacToe
             var output = new ConsoleOutput();
             
             var board = new GameBoard(determinators, validators, output);
-            Console.WriteLine(Constants.Welcome);
-            board.Print();
+            
             board.PlayGame();
         }
     }

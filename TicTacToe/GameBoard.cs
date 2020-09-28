@@ -12,11 +12,9 @@ namespace TicTacToe
                 new[] { 0, 0, 0 },                            
             };
         private IWinningBoard[] _determinators;
-
         private IValidator[] _validators;
         private Player[] _players;
         private IOutput _output;
-
         public GameBoard(IWinningBoard[] determinators, IValidator[] validators, ConsoleOutput output)
         {
             _determinators = determinators;
@@ -28,25 +26,24 @@ namespace TicTacToe
                 new Player (2, "O")
             };
         }
-
-        public bool IsThisAWin()
+        public void PlayGame()
         {
-            return _determinators.Any(_ => _.IsThisAWin(board));
-        }
-
-        public bool IsValid(int[][] board, int x, int y)
-        {
-            var results =  _validators.Select(_ => _.IsValid(board, x, y)).ToArray();
-            foreach(var result in results)
+            Console.WriteLine(Constants.Welcome);
+            Print();
+            var maxMoves = board.Sum(_ => _.Count());
+            while (maxMoves != 0)
             {
-                if (!result.Success)
-                {
-                    _output.OutputTextWithNewLine(result.ErrorMessage);
-                }
-            }
-            return results.All(_ => _.Success);
+                var currentPlayer = _players[(maxMoves + 1) % 2]; 
+                var position = GetValidPlayerInput(currentPlayer);
+                
+                Place(currentPlayer.PlayerId, position.X, position.Y);
+                Console.Write(Constants.MoveAccepted);
+                Print();
+                EndGame();
+                maxMoves--;
+            } 
+            _output.OutputTextWithNewLine(Constants.Draw);
         }
-
         public void Print()
         {
             _output.OutputTextWithNewLine("Here's the current board:");
@@ -71,27 +68,8 @@ namespace TicTacToe
                 _output.OutputText(Environment.NewLine);
             }
         }
-
-        public void PlayGame()
-        {
-            var maxMoves = board.Sum(_ => _.Count());
-            while (maxMoves != 0)
-            {
-                var currentPlayer = _players[(maxMoves + 1) % 2]; 
-                var position = GetValidPlayerInput(currentPlayer);
-                
-                Place(currentPlayer.PlayerId, position.X, position.Y);
-                Console.Write(Constants.MoveAccepted);
-                Print();
-                EndGame();
-                maxMoves--;
-            } 
-            _output.OutputTextWithNewLine(Constants.Draw);
-        }
-        
         private PlayerInput GetValidPlayerInput(Player player)
         {
-            
             _output.OutputTextWithNewLine($"Player {player.PlayerId} enter a coord x,y to place your {player.Marker} or enter 'q' to give up: ");
             var coords = Console.ReadLine();
             if (coords.Equals("q", StringComparison.CurrentCultureIgnoreCase))
@@ -111,12 +89,23 @@ namespace TicTacToe
             }
             return position;
         }
-        
+        public bool IsValid(int[][] board, int x, int y)
+        {
+            var results =  _validators.Select(_ => _.IsValid(board, x, y)).ToArray();
+            foreach(var result in results)
+            {
+                if (!result.Success)
+                {
+                    _output.OutputTextWithNewLine(result.ErrorMessage);
+                    break;
+                }
+            }
+            return results.All(_ => _.Success);
+        }
         public void Place(int player, int x, int y)
         {
                 board[x][y] = player;
         }
-
         private void EndGame()
         {
             if (IsThisAWin())
@@ -125,6 +114,10 @@ namespace TicTacToe
                 _output.OutputTextWithNewLine(Constants.IsAWin);
                 Environment.Exit(0);
             }
+        }
+        public bool IsThisAWin()
+        {
+            return _determinators.Any(_ => _.IsThisAWin(board));
         }
     }
 }
