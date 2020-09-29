@@ -7,9 +7,8 @@ namespace tests.TicTacToe
     public class PlayerInput_Tests
     {
         [Theory]
-        [InlineData("1,1",1,1)]
-        [InlineData("0,0",0,0)]
-        [InlineData("a,b",0,0)] 
+        [InlineData("1,1",0,0)]
+        [InlineData("3,3",2,2)]
         public void Should_Receive_Input_Values(string actual, int expectedX, int expectedY)
         {
             // arrange

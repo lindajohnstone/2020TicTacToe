@@ -13,9 +13,9 @@ namespace TicTacToe
         {
             var userInput = value.Split(",");
             int.TryParse(userInput[0], out var x);
-            X = x; 
+            X = x - 1; 
             int.TryParse(userInput[1], out var y); 
-            Y = y;
+            Y = y - 1;
         } 
     }
 }

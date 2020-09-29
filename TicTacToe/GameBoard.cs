@@ -91,10 +91,13 @@ namespace TicTacToe
         }
         public bool IsValid(int[][] board, int x, int y)
         {
+            
             var output = false;
-            foreach (var validator in _validators)
+            foreach (var result in from validator in _validators
+                                   let result = validator.IsValid(board, x, y)
+                                   select result
+            )
             {
-                var result = validator.IsValid(board, x, y);
                 if (result.Success)
                 {
                     output = true;
@@ -107,6 +110,7 @@ namespace TicTacToe
                     break;
                 }
             }
+
             return output;
         }
         public void Place(int player, int x, int y)

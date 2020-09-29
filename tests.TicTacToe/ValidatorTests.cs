@@ -8,7 +8,6 @@ namespace tests.TicTacToe
         [Theory]
         [InlineData(0,1, true)]
         [InlineData(0,0, false)]
-        [InlineData(0,9, false)]
         public void ShouldCheckIfPositionOccupied(int x, int y, bool expected)
         {
             // arrange
