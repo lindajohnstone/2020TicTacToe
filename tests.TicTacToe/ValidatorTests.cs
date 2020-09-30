@@ -1,5 +1,6 @@
 using TicTacToe;
 using Xunit;
+using Moq;
 
 namespace tests.TicTacToe
 {
@@ -76,6 +77,85 @@ namespace tests.TicTacToe
 
             // assert
             Assert.Equal(expected, result);
+        }
+         [Fact]
+        public void ShouldTestValidatorOutputFact() // will be deleted
+        {
+            // arrange
+            int[][] board = new[]
+             {
+                new[] { 1, 1, 1 },
+                new[] { 0, 0, 0 },
+                new[] { 0, 0, 0 },
+            }; 
+            var validators = new IValidator[]
+            {
+                new ArrayRangeValidator(),
+                new PositionValidator()
+            };
+            ConsoleOutput userOutput = new ConsoleOutput();
+            var position = new GameBoard(new IWinningBoard[] {}, validators, userOutput);
+            var errorMessage = "Coord values need to be between 1,1 & 3,3. Please try again.";
+            int x = 0;
+            int y = 0;
+
+            // act
+            var actual = position.IsValid(board, x, y);
+            Result result = new Result(actual, errorMessage);
+            
+            // assert
+            Assert.False(result.Success);
+        }
+        [Theory]
+        [InlineData(0,0, "Coord is already occupied. Please try again.")]
+        [InlineData(0,9, "Coord values need to be between 1,1 & 3,3. Please try again.")]
+        public void ShouldTestValidatorOutput(int x, int y, string expected)
+        {
+            // arrange
+            int[][] board = new[]
+             {
+                new[] { 1, 1, 1 },
+                new[] { 0, 0, 0 },
+                new[] { 0, 0, 0 },
+            }; 
+            var validators = new IValidator[]
+            {
+                new ArrayRangeValidator(),
+                new PositionValidator()
+            };
+            ConsoleOutput userOutput = new ConsoleOutput();
+            var position = new GameBoard(new IWinningBoard[] {}, validators, userOutput);
+
+            // act
+            Result result = new Result(position.IsValid(board, x, y), expected);
+            
+            // assert
+            Assert.False(result.Success);
+        }
+        [Fact]
+        public void ShouldTestArrayRangeValidator()
+        {
+            // arrange
+            int[][] board = new[]
+             {
+                new[] { 1, 1, 1 },
+                new[] { 0, 0, 0 },
+                new[] { 0, 0, 0 },
+            }; 
+            var x = 0;
+            var y = 9;
+            //var MoqRangeValidator = new Mock<ArrayRangeValidator>();
+            //MoqRangeValidator.Setup(range => range.IsValid(board, x, y)).Returns(new Result(true, "Oops"));
+            //var MoqPositionValidator = new Mock<PositionValidator>();
+            //MoqPositionValidator.Setup(range => range.IsValid(board, x, y)).Returns(new Result(true, "Oh, no"));
+            var validator = new Mock<IValidator>();
+            validator.Setup(_ => _.IsValid(board, x, y)).Returns(new Result(true, "Oops"));
+            IValidator[] validators  = new[] { validator as IValidator};
+            // act
+            var position = new GameBoard(new IWinningBoard[] {}, validators, new ConsoleOutput());
+            var result = position.IsValid(board, x, y);
+            // assert
+            Assert.True(result);
         }
     }
 }
