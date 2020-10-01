@@ -39,7 +39,7 @@ namespace TicTacToe
                 Place(currentPlayer.PlayerId, position.X, position.Y);
                 Console.Write(Constants.MoveAccepted);
                 Print();
-                EndGame();
+                EndGame(currentPlayer);
                 maxMoves--;
             } 
             _output.OutputTextWithNewLine(Constants.Draw);
@@ -115,12 +115,12 @@ namespace TicTacToe
         {
                 board[x][y] = player;
         }
-        private void EndGame()
+        public void EndGame(Player player)
         {
             if (IsThisAWin())
             {
                 _output.OutputText(Constants.MoveAccepted);
-                _output.OutputTextWithNewLine(Constants.IsAWin);
+                _output.OutputTextWithNewLine($"Well done, Player {player.Marker} won the game! ");
                 Environment.Exit(0);
             }
         }
