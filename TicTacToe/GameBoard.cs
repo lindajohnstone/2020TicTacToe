@@ -46,7 +46,7 @@ namespace TicTacToe
         }
         public void Print()
         {
-            _output.OutputTextWithNewLine("Here's the current board:");
+            _output.OutputTextWithNewLine(Constants.Print);
             for (int i = 0; i < board.Length; i++)
             {
                 for (int j = 0; j < board.Length; j++)
@@ -70,7 +70,8 @@ namespace TicTacToe
         }
         private PlayerInput GetValidPlayerInput(Player player)
         {
-            _output.OutputTextWithNewLine($"Player {player.PlayerId} enter a coord x,y to place your {player.Marker} or enter 'q' to give up: ");
+            string instruction = string.Format(Constants.PlayerInstruction, player.PlayerId, player.Marker);
+            _output.OutputTextWithNewLine(instruction);
             var coords = Console.ReadLine();
             if (coords.Equals("q", StringComparison.CurrentCultureIgnoreCase))
             {
@@ -79,7 +80,7 @@ namespace TicTacToe
             } 
             if (!coords.UserInputIsValid())
             {
-                _output.OutputTextWithNewLine("Incorrect format. Please try again. ");
+                _output.OutputTextWithNewLine(Constants.IncorrectFormat);
                 return GetValidPlayerInput(player);
             }
             var position = new PlayerInput(coords);
@@ -119,8 +120,9 @@ namespace TicTacToe
         {
             if (IsThisAWin())
             {
+                string itsAWin = string.Format(Constants.WinMessage, player.PlayerId);
                 _output.OutputText(Constants.MoveAccepted);
-                _output.OutputTextWithNewLine($"Well done, Player {player.Marker} won the game! ");
+                _output.OutputTextWithNewLine(itsAWin);
                 Environment.Exit(0);
             }
         }
