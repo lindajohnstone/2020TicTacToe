@@ -2,6 +2,7 @@ using Xunit;
 using TicTacToe;
 using System.Collections.Generic;
 using System.Collections;
+using Moq;
 
 namespace tests.TicTacToe
 {
@@ -24,6 +25,24 @@ namespace tests.TicTacToe
             var result = determinator.IsThisAWin(board);
             // assert
             Assert.True(result);
+        }
+        [Theory]
+        [ClassData(typeof(RowDeterminatorData))]
+        public void ShouldTestRowDeterminator(TestData data)
+        {
+            // arrange
+            var mockDeterminator = new Mock<IWinningBoard>();
+            mockDeterminator
+            .Setup(_ => _.IsThisAWin(data.Input))
+            .Returns(data.Expected);
+ 
+            var mockDeterminators = new RowDeterminator();
+ 
+            // act
+            var result = mockDeterminators.IsThisAWin(data.Input);
+ 
+            // assert
+            Assert.Equal(data.Expected, result);
         }
 
         [Theory]
@@ -104,6 +123,23 @@ namespace tests.TicTacToe
 
             // assert
             Assert.True(result);
+        }
+
+        [Theory]
+        [ClassData(typeof(ColumnDeterminatorData))]
+        public void ShouldTestColumnDeterminator(TestData data)
+        {
+            // arrange
+            var mockDeterminator = new Mock<IWinningBoard>();
+            mockDeterminator
+            .Setup(_ => _.IsThisAWin(data.Input))
+            .Returns(data.Expected);
+            var mockDeterminators = new ColumnDeterminator();
+
+            // act
+            var result = mockDeterminators.IsThisAWin(data.Input);
+            // assert
+            Assert.Equal(data.Expected, result);
         }
 
         [Theory]
@@ -205,6 +241,23 @@ namespace tests.TicTacToe
 
             // act
             var result = determinator.IsThisAWin(data.Input);
+
+            // assert
+            Assert.Equal(data.Expected, result);
+        }
+        [Theory]
+        [ClassData(typeof(DiagonalDeterminatorTestData))]
+        public void ShouldTestDiagonalDeterminator(TestData data)
+        {
+            // arrange
+            var mockDeterminator = new Mock<IWinningBoard>();
+            mockDeterminator
+            .Setup(_ => _.IsThisAWin(data.Input))
+            .Returns(data.Expected);
+            var mockDeterminators = new DiagonalDeterminator();
+
+            // act
+            var result = mockDeterminators.IsThisAWin(data.Input);
 
             // assert
             Assert.Equal(data.Expected, result);

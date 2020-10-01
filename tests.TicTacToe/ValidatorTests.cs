@@ -132,9 +132,14 @@ namespace tests.TicTacToe
             // assert
             Assert.False(result.Success);
         }
-        [Fact]
-        public void ShouldTestArrayRangeValidator()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+         public void ShouldTestArrayRangeValidator(bool expected)
         {
+            // This test does not test any specific scenario
+            // This test is just to implement and understand usage of Moq in xUnit
+ 
             // arrange
             int[][] board = new[]
              {
@@ -144,18 +149,20 @@ namespace tests.TicTacToe
             }; 
             var x = 0;
             var y = 9;
-            //var MoqRangeValidator = new Mock<ArrayRangeValidator>();
-            //MoqRangeValidator.Setup(range => range.IsValid(board, x, y)).Returns(new Result(true, "Oops"));
-            //var MoqPositionValidator = new Mock<PositionValidator>();
-            //MoqPositionValidator.Setup(range => range.IsValid(board, x, y)).Returns(new Result(true, "Oh, no"));
-            var validator = new Mock<IValidator>();
-            validator.Setup(_ => _.IsValid(board, x, y)).Returns(new Result(true, "Oops"));
-            IValidator[] validators  = new[] { validator as IValidator};
+ 
+            var mockValidator = new Mock<IValidator>();
+            mockValidator
+            .Setup(_ => _.IsValid(board, x, y))
+            .Returns(new Result(expected, "Some errorMessage"));
+ 
+            var mockValidators = new IValidator[] {mockValidator.Object};
+ 
             // act
-            var position = new GameBoard(new IWinningBoard[] {}, validators, new ConsoleOutput());
+            var position = new GameBoard(new IWinningBoard[] {}, mockValidators, new ConsoleOutput());
             var result = position.IsValid(board, x, y);
+ 
             // assert
-            Assert.True(result);
-        }
+            Assert.Equal(expected, result);
+        } 
     }
 }

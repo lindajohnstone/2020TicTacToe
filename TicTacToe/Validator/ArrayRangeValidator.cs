@@ -4,7 +4,7 @@ namespace TicTacToe
 {
     public class ArrayRangeValidator : IValidator
     {
-        const string errorMessage = "Coord values need to be between 1,1 & {0},{1}. Please try again.";
+        const string errorMessage = "Coord values need to be between 1,1 & {0},{1}. Please try again. ";
         public Result IsValid(int[][] board, int x, int y)
         {
             string resultString = string.Format(errorMessage, board.Length, board.Last().Length);
