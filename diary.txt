@@ -1,0 +1,109 @@
+31/8
+Initialise board
+** first try output was 27 dots in a line
+** second try output was 9 dots in a line
+** third and final try was 9 dots spaced as per tictactoe
+** not 5SP
+
+User Input
+** as expected
+
+Set input values to array values (-1 for all) 
+** started with tests
+** many reds!
+** tried string.substring
+	var changeInputFirstSubstring = value.Substring(0,0); // = "1"
+        var changeInputSecondSubstring = value.Substring(2,2); // = "1"
+        int changeFirst = Convert.ToInt32(changeInputFirstSubstring); //
+        int changeSecond = Convert.ToInt32(changeInputSecondSubstring);
+        changeFirst = changeFirst - 1;
+        changeSecond = changeSecond - 1;
+        changeInputFirstSubstring = Convert.ToString(changeFirst);
+        changeInputSecondSubstring = Convert.ToString(changeSecond);
+        string arrayInput = String.Concat(changeInputFirstSubstring, ",", changeInputSecondSubstring);
+        return arrayInput;
+ 	** test failed with input 1,1
+** use string.split
+	string[] userInput = value.Split(",");
+        int first = Convert.ToInt32(userInput[0]); // 1
+        int second = Convert.ToInt32(userInput[1]); // 1
+        first = first - 1; // 0
+        second = second - 1; // 0
+        var firstValue = Convert.ToString(first); // "0"
+        var secondValue = Convert.ToString(second); // "0"
+        string arrayInput = String.Concat(firstValue, ",", secondValue); // "0,0"
+        return arrayInput; // "0,0" - fails; passes if both expected and actual are "0,0"
+	** test failed as above
+** test and code working during mentor meeting
+===========
+1/9
+Set input values to array values (-1 for all)
+** loop inside Print method done - unable to test ** manually changed values in array
+	** did not work (if statement original version, line at bottom attempt to try different way - prints 
+		System.Int32[]System.Int32[]System.Int32[]
+		System.Int32[]System.Int32[]System.Int32[]
+		System.Int32[]System.Int32[]System.Int32[]
+	/* var coords = board.GetValue(i, j);
+                    if ((bool)(coords = 2))
+                    {
+                        Console.Write("Y");
+                    }
+                    else
+                    {
+                        if ((bool)(coords = 1))
+                        {
+                            Console.Write("X");
+                        }
+                        else
+                        {
+                            Console.Write(". ");
+                        }
+                    } */
+                    //Console.Write(board.GetValue(j));
+** test not working.
+** test and code working after mentor meeting
+============
+3/9
+Loop so we have 3 turns
+** 1st version works - cannot be tested
+Is this a win
+** one test written - code written that can't be reused. ** will only work with current positions
+** how to theory test?
+UPDATE:
+** test and method for Is this a win updated. Need to refactor so that a string value can be used to show who won.
+/*
+            loop through array to check which is occupied
+            pattern = 0,0 0,1 0,2
+            if all 1 or all 2, we have a win
+            pass to another method to print and end game
+            */
+            /* string winCheck = "";
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (IsOccupied(i, j))
+                    {
+                        winCheck = string.Concat(board[0].Select(_ => _.ToString()));
+                    }
+                }
+            }
+            return winCheck; */
+1st version
+if (row == null || row.Length == 0 || row[0] == 0 )
+            {
+                return false;
+            }
+            bool result = false;
+            for(int i = 0; i < row.Length - 1; i++)
+            {
+                if(row[i] == row[i+1]) 
+                {
+                    result = true;
+                }
+                else 
+                {
+                    result = false;
+                    break;
+                }   
+            }
